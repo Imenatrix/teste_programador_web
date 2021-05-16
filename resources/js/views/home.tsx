@@ -4,7 +4,13 @@ import { render } from 'react-dom'
 const Home : React.FC = () => {
 
     return (
-        <h1>Hello, world!</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/products">Produtos</a>
+            <a href="/api">API</a>
+            <a href="/login">Login</a>
+            <a href="/user/create">Registrar</a>
+        </nav>
     )
 
 }

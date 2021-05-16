@@ -25,7 +25,17 @@ var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/r
 var react_dom_1 = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 
 var Home = function Home() {
-  return react_1["default"].createElement("h1", null, "Hello, world!");
+  return react_1["default"].createElement("nav", null, react_1["default"].createElement("a", {
+    href: "/"
+  }, "Home"), react_1["default"].createElement("a", {
+    href: "/products"
+  }, "Produtos"), react_1["default"].createElement("a", {
+    href: "/api"
+  }, "API"), react_1["default"].createElement("a", {
+    href: "/login"
+  }, "Login"), react_1["default"].createElement("a", {
+    href: "/user/create"
+  }, "Registrar"));
 };
 
 var root = document.getElementById('root');
