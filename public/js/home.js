@@ -358,7 +358,7 @@ var react_jss_1 = __webpack_require__(/*! react-jss */ "./node_modules/react-jss
 
 var react_dom_1 = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 
-var Home = function Home() {
+var Home = function Home(props) {
   var styles = useStyles();
   return react_1["default"].createElement("nav", {
     className: styles.topbar
@@ -373,13 +373,16 @@ var Home = function Home() {
     href: "/api"
   }, "API"), react_1["default"].createElement("div", {
     className: styles.spacer
-  }), react_1["default"].createElement("a", {
+  }), props.authenticated ? react_1["default"].createElement("a", {
+    className: styles.link,
+    href: "/logout"
+  }, "Logout") : react_1["default"].createElement(react_1["default"].Fragment, null, react_1["default"].createElement("a", {
     className: styles.link,
     href: "/login"
   }, "Login"), react_1["default"].createElement("a", {
     className: styles.link,
     href: "/user/create"
-  }, "Registrar"));
+  }, "Registrar")));
 };
 
 var useStyles = react_jss_1.createUseStyles({
@@ -401,7 +404,10 @@ var useStyles = react_jss_1.createUseStyles({
   }
 });
 var root = document.getElementById('root');
-react_dom_1.render(react_1["default"].createElement(Home, null), root);
+var authenticated = (root === null || root === void 0 ? void 0 : root.getAttribute('authenticated')) === '1';
+react_dom_1.render(react_1["default"].createElement(Home, {
+  authenticated: authenticated
+}), root);
 
 /***/ }),
 

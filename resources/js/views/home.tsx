@@ -2,7 +2,11 @@ import React from 'react'
 import { createUseStyles } from 'react-jss'
 import { render } from 'react-dom'
 
-const Home : React.FC = () => {
+interface Props {
+    authenticated : boolean
+}
+
+const Home : React.FC<Props> = (props) => {
 
     const styles = useStyles()
 
@@ -12,8 +16,12 @@ const Home : React.FC = () => {
             <a className={styles.link} href="/products">Produtos</a>
             <a className={styles.link} href="/api">API</a>
             <div className={styles.spacer}/>
-            <a className={styles.link} href="/login">Login</a>
-            <a className={styles.link} href="/user/create">Registrar</a>
+            {props.authenticated ?
+                <a className={styles.link} href="/logout">Logout</a>
+            : <>
+                <a className={styles.link} href="/login">Login</a>
+                <a className={styles.link} href="/user/create">Registrar</a>
+            </> }
         </nav>
     )
 
@@ -39,4 +47,5 @@ const useStyles = createUseStyles({
 })
 
 const root = document.getElementById('root')
-render(<Home/>, root)
+const authenticated = root?.getAttribute('authenticated') === '1'
+render(<Home authenticated={authenticated}/>, root)
