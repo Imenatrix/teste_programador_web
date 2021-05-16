@@ -451,10 +451,10 @@ var useStyles = react_jss_1.createUseStyles({
 
 /***/ }),
 
-/***/ "./resources/js/views/user/create.tsx":
-/*!********************************************!*\
-  !*** ./resources/js/views/user/create.tsx ***!
-  \********************************************/
+/***/ "./resources/js/views/user/login.tsx":
+/*!*******************************************!*\
+  !*** ./resources/js/views/user/login.tsx ***!
+  \*******************************************/
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -478,13 +478,11 @@ var react_dom_1 = __webpack_require__(/*! react-dom */ "./node_modules/react-dom
 
 var react_jss_1 = __webpack_require__(/*! react-jss */ "./node_modules/react-jss/dist/react-jss.esm.js");
 
-var Create = function Create() {
+var Login = function Login() {
   var styles = useStyles();
   return react_1["default"].createElement("div", {
     className: styles.container
-  }, react_1["default"].createElement(UserForm_1["default"], {
-    register: true
-  }));
+  }, react_1["default"].createElement(UserForm_1["default"], null));
 };
 
 var useStyles = react_jss_1.createUseStyles({
@@ -497,7 +495,7 @@ var useStyles = react_jss_1.createUseStyles({
   }
 });
 var root = document.getElementById('root');
-react_dom_1.render(react_1["default"].createElement(Create, null), root);
+react_dom_1.render(react_1["default"].createElement(Login, null), root);
 
 /***/ }),
 
@@ -37563,7 +37561,7 @@ function warning(condition, message) {
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module is referenced by other modules so it can't be inlined
-/******/ 	var __webpack_exports__ = __webpack_require__("./resources/js/views/user/create.tsx");
+/******/ 	var __webpack_exports__ = __webpack_require__("./resources/js/views/user/login.tsx");
 /******/ 	
 /******/ })()
 ;
