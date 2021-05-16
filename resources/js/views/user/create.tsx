@@ -1,4 +1,5 @@
 import React from 'react'
+import CSRF from '../../components/CSRF'
 import { render } from 'react-dom'
 import { createUseStyles } from 'react-jss'
 
@@ -9,6 +10,7 @@ const Create : React.FC = () => {
     return (
         <div className={styles.container}>
             <form className={styles.form} action="/user/store">
+                <CSRF/>
                 <input className={styles.input} type="text" name="name" placeholder="Insira seu nome"/> <br/>
                 <input className={styles.input} type="text" name="email" placeholder="Insira seu e-mail"/> <br/>
                 <input className={styles.input} type="password" name="password" placeholder="Insira sua senha"/> <br/>

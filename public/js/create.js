@@ -333,6 +333,42 @@ function memoize(fn) {
 
 /***/ }),
 
+/***/ "./resources/js/components/CSRF.tsx":
+/*!******************************************!*\
+  !*** ./resources/js/components/CSRF.tsx ***!
+  \******************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var CSRF = function CSRF() {
+  var _a;
+
+  var csrf_token = (_a = document.querySelector('meta[name="csrf_token"]')) === null || _a === void 0 ? void 0 : _a.getAttribute('content');
+  return react_1["default"].createElement(react_1["default"].Fragment, null, " ", csrf_token != null && react_1["default"].createElement("input", {
+    type: "hidden",
+    name: "_token",
+    value: csrf_token
+  }), " ");
+};
+
+exports.default = CSRF;
+
+/***/ }),
+
 /***/ "./resources/js/views/user/create.tsx":
 /*!********************************************!*\
   !*** ./resources/js/views/user/create.tsx ***!
@@ -354,6 +390,8 @@ Object.defineProperty(exports, "__esModule", ({
 
 var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 
+var CSRF_1 = __importDefault(__webpack_require__(/*! ../../components/CSRF */ "./resources/js/components/CSRF.tsx"));
+
 var react_dom_1 = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 
 var react_jss_1 = __webpack_require__(/*! react-jss */ "./node_modules/react-jss/dist/react-jss.esm.js");
@@ -365,7 +403,7 @@ var Create = function Create() {
   }, react_1["default"].createElement("form", {
     className: styles.form,
     action: "/user/store"
-  }, react_1["default"].createElement("input", {
+  }, react_1["default"].createElement(CSRF_1["default"], null), react_1["default"].createElement("input", {
     className: styles.input,
     type: "text",
     name: "name",
