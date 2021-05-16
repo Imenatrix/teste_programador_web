@@ -27,7 +27,7 @@ function compileReactViewsRecursively(dir) {
             mix.ts(dir + '/' + item, 'public/js').react()
         }
         else {
-            compileReactViewsRecursively(item)
+            compileReactViewsRecursively(dir + '/' + item)
         }
     })
 }
