@@ -9,9 +9,9 @@ const Create : React.FC = () => {
     return (
         <div className={styles.container}>
             <form className={styles.form} action="/user/store">
-                <input className={styles.input} type="text" name="name"/> <br/>
-                <input className={styles.input} type="text" name="email"/> <br/>
-                <input className={styles.input} type="password" name="password"/> <br/>
+                <input className={styles.input} type="text" name="name" placeholder="Insira seu nome"/> <br/>
+                <input className={styles.input} type="text" name="email" placeholder="Insira seu e-mail"/> <br/>
+                <input className={styles.input} type="password" name="password" placeholder="Insira sua senha"/> <br/>
                 <input className={styles.btnSubmit} type="submit" value="Registar"/>
             </form>
         </div>

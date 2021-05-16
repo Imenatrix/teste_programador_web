@@ -368,15 +368,18 @@ var Create = function Create() {
   }, react_1["default"].createElement("input", {
     className: styles.input,
     type: "text",
-    name: "name"
+    name: "name",
+    placeholder: "Insira seu nome"
   }), " ", react_1["default"].createElement("br", null), react_1["default"].createElement("input", {
     className: styles.input,
     type: "text",
-    name: "email"
+    name: "email",
+    placeholder: "Insira seu e-mail"
   }), " ", react_1["default"].createElement("br", null), react_1["default"].createElement("input", {
     className: styles.input,
     type: "password",
-    name: "password"
+    name: "password",
+    placeholder: "Insira sua senha"
   }), " ", react_1["default"].createElement("br", null), react_1["default"].createElement("input", {
     className: styles.btnSubmit,
     type: "submit",
