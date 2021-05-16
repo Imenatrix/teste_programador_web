@@ -1,4 +1,5 @@
-const mix = require('laravel-mix');
+const mix = require('laravel-mix')
+const fs = require('fs')
 
 /*
  |--------------------------------------------------------------------------
@@ -11,7 +12,22 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-    .postCss('resources/css/app.css', 'public/css', [
-        //
-    ]);
+const viewsDirs = [
+    'resources/js/views'
+]
+
+viewsDirs.forEach(viewsDir => {
+    compileReactViewsRecursively(viewsDir)
+})
+
+function compileReactViewsRecursively(dir) {
+    const items = fs.readdirSync(dir)
+    items.forEach(item => {
+        if (item.endsWith('.tsx')) {
+            mix.ts(dir + '/' + item, 'public/js').react()
+        }
+        else {
+            compileReactViewsRecursively(item)
+        }
+    })
+}
