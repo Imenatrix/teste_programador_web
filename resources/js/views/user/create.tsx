@@ -1,5 +1,4 @@
 import React from 'react'
-import CSRF from '../../components/CSRF'
 import UserForm from '../../components/UserForm'
 import { render } from 'react-dom'
 import { createUseStyles } from 'react-jss'
