@@ -20,4 +20,5 @@ Route::get('/', function () {
 
 Route::post('/user/authenticate', [UserController::class, 'authenticate']);
 Route::get('/login', [UserController::class, 'login'])->name('login');
+Route::get('/logout', [UserController::class, 'logout']);
 Route::resource('/user', UserController::class);
