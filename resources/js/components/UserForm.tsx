@@ -2,14 +2,21 @@ import React from 'react'
 import CSRF from './CSRF'
 import { createUseStyles } from 'react-jss'
 
-const UserForm : React.FC = () => {
+interface Props {
+    register? : boolean
+}
+
+const UserForm : React.FC<Props> = (props) => {
 
     const styles = useStyles()
+    const register = props.register
 
     return (
-        <form className={styles.container} method="post" action="/user">
+        <form className={styles.container} method="post" action={register ? '/user' : '/user/authenticate'}>
             <CSRF/>
-            <input className={styles.input} type="text" name="name" placeholder="Insira seu nome"/> <br/>
+            {register && <>
+                <input className={styles.input} type="text" name="name" placeholder="Insira seu nome"/> <br/>
+            </> }
             <input className={styles.input} type="text" name="email" placeholder="Insira seu e-mail"/> <br/>
             <input className={styles.input} type="password" name="password" placeholder="Insira sua senha"/> <br/>
             <input className={styles.btnSubmit} type="submit" value="Registar"/>

@@ -9,7 +9,7 @@ const Create : React.FC = () => {
 
     return (
         <div className={styles.container}>
-            <UserForm/>
+            <UserForm register/>
         </div>
     )
 
