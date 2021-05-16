@@ -18,6 +18,6 @@ Route::get('/', function () {
     return view('home');
 });
 
-
-Route::get('/login', [UserController::class, 'login']);
+Route::post('/user/authenticate', [UserController::class, 'authenticate']);
+Route::get('/login', [UserController::class, 'login'])->name('login');
 Route::resource('/user', UserController::class);
