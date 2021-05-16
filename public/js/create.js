@@ -369,10 +369,10 @@ exports.default = CSRF;
 
 /***/ }),
 
-/***/ "./resources/js/views/user/create.tsx":
-/*!********************************************!*\
-  !*** ./resources/js/views/user/create.tsx ***!
-  \********************************************/
+/***/ "./resources/js/components/UserForm.tsx":
+/*!**********************************************!*\
+  !*** ./resources/js/components/UserForm.tsx ***!
+  \**********************************************/
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -390,18 +390,14 @@ Object.defineProperty(exports, "__esModule", ({
 
 var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 
-var CSRF_1 = __importDefault(__webpack_require__(/*! ../../components/CSRF */ "./resources/js/components/CSRF.tsx"));
-
-var react_dom_1 = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+var CSRF_1 = __importDefault(__webpack_require__(/*! ./CSRF */ "./resources/js/components/CSRF.tsx"));
 
 var react_jss_1 = __webpack_require__(/*! react-jss */ "./node_modules/react-jss/dist/react-jss.esm.js");
 
-var Create = function Create() {
+var UserForm = function UserForm() {
   var styles = useStyles();
-  return react_1["default"].createElement("div", {
-    className: styles.container
-  }, react_1["default"].createElement("form", {
-    className: styles.form,
+  return react_1["default"].createElement("form", {
+    className: styles.container,
     method: "post",
     action: "/user"
   }, react_1["default"].createElement(CSRF_1["default"], null), react_1["default"].createElement("input", {
@@ -423,18 +419,12 @@ var Create = function Create() {
     className: styles.btnSubmit,
     type: "submit",
     value: "Registar"
-  })));
+  }));
 };
 
+exports.default = UserForm;
 var useStyles = react_jss_1.createUseStyles({
   container: {
-    width: '100vw',
-    height: '100vh',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  form: {
     backgroundColor: 'coral',
     padding: '1.5em',
     borderRadius: 5
@@ -455,6 +445,52 @@ var useStyles = react_jss_1.createUseStyles({
     border: 'none',
     color: 'white',
     fontWeight: 'bold'
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/views/user/create.tsx":
+/*!********************************************!*\
+  !*** ./resources/js/views/user/create.tsx ***!
+  \********************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var UserForm_1 = __importDefault(__webpack_require__(/*! ../../components/UserForm */ "./resources/js/components/UserForm.tsx"));
+
+var react_dom_1 = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+
+var react_jss_1 = __webpack_require__(/*! react-jss */ "./node_modules/react-jss/dist/react-jss.esm.js");
+
+var Create = function Create() {
+  var styles = useStyles();
+  return react_1["default"].createElement("div", {
+    className: styles.container
+  }, react_1["default"].createElement(UserForm_1["default"], null));
+};
+
+var useStyles = react_jss_1.createUseStyles({
+  container: {
+    width: '100vw',
+    height: '100vh',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 });
 var root = document.getElementById('root');
