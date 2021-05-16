@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -96,5 +97,15 @@ class UserController extends Controller
 
     public function login() {
         return view('user.login');
+    }
+
+    public function authenticate(Request $request) {
+        $validated = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required']
+        ]);
+        Auth::attempt($validated);
+        $request->session()->regenerate();
+        return redirect()->intended();
     }
 }
