@@ -9,7 +9,7 @@ const Create : React.FC = () => {
 
     return (
         <div className={styles.container}>
-            <form className={styles.form} action="/user/store">
+            <form className={styles.form} method="post" action="/user">
                 <CSRF/>
                 <input className={styles.input} type="text" name="name" placeholder="Insira seu nome"/> <br/>
                 <input className={styles.input} type="text" name="email" placeholder="Insira seu e-mail"/> <br/>
