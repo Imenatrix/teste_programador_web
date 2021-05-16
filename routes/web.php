@@ -19,4 +19,5 @@ Route::get('/', function () {
 });
 
 
+Route::get('/login', [UserController::class, 'login']);
 Route::resource('/user', UserController::class);
