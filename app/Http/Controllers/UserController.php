@@ -99,6 +99,11 @@ class UserController extends Controller
         return view('user.login');
     }
 
+    public function logout() {
+        Auth::logout();
+        return redirect('/');
+    }
+
     public function authenticate(Request $request) {
         $validated = $request->validate([
             'email' => ['required', 'email'],
