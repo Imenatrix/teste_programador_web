@@ -402,7 +402,8 @@ var Create = function Create() {
     className: styles.container
   }, react_1["default"].createElement("form", {
     className: styles.form,
-    action: "/user/store"
+    method: "post",
+    action: "/user"
   }, react_1["default"].createElement(CSRF_1["default"], null), react_1["default"].createElement("input", {
     className: styles.input,
     type: "text",
