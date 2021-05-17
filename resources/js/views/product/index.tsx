@@ -23,10 +23,14 @@ const Index : React.FC<Props> = (props) => {
 const useStyles = createUseStyles({
     container : {
         width : '100vw',
-        height : '100vh',
         display : 'flex',
         justifyContent : 'center',
-        alignItems : 'center'
+        alignItems : 'center',
+        paddingTop : '12.5vh',
+        paddingLeft : '12.5vw',
+        paddingRight : '12.5vw',
+        boxSizing : 'border-box',
+        paddingBottom : 0
     }
 })
 
