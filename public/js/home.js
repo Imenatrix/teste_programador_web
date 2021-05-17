@@ -367,7 +367,7 @@ var Home = function Home(props) {
     href: "/"
   }, "Home"), react_1["default"].createElement("a", {
     className: styles.link,
-    href: "/products"
+    href: "/product"
   }, "Produtos"), react_1["default"].createElement("a", {
     className: styles.link,
     href: "/api"
