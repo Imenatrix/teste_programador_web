@@ -534,13 +534,17 @@ var ProductList = function ProductList(props) {
       search = _a[0],
       setSearch = _a[1];
 
-  var _b = react_1.useState(false),
-      showForm = _b[0],
-      setShowForm = _b[1];
+  var _b = react_1.useState(),
+      selectedProduct = _b[0],
+      setSelectedProduct = _b[1];
 
-  var _c = react_1.useState(products),
-      searchResult = _c[0],
-      setSearchResult = _c[1];
+  var _c = react_1.useState(false),
+      showForm = _c[0],
+      setShowForm = _c[1];
+
+  var _d = react_1.useState(products),
+      searchResult = _d[0],
+      setSearchResult = _d[1];
 
   function handleOnSearchChange(e) {
     var newSearch = e.target.value;
@@ -575,10 +579,16 @@ var ProductList = function ProductList(props) {
   }, react_1["default"].createElement(ProductForm_1["default"], null)), react_1["default"].createElement("div", {
     className: styles.list
   }, searchResult.map(function (product) {
-    return react_1["default"].createElement(react_1["default"].Fragment, null, react_1["default"].createElement(ProductPod_1["default"], {
+    return selectedProduct === product.id ? react_1["default"].createElement(ProductForm_1["default"], {
       key: product.id,
       product: product
-    }));
+    }) : react_1["default"].createElement(ProductPod_1["default"], {
+      key: product.id,
+      onBtnEditPress: function onBtnEditPress() {
+        return setSelectedProduct(product.id);
+      },
+      product: product
+    });
   })));
 };
 
@@ -661,7 +671,12 @@ var ProductPod = function ProductPod(props) {
     className: styles.txtName
   }, product.name + ' - R$' + product.price.toFixed(2)), react_1["default"].createElement("div", {
     className: styles.txtDescription
-  }, product.description)), react_1["default"].createElement("form", {
+  }, product.description)), react_1["default"].createElement("div", {
+    className: styles.btnGroup
+  }, react_1["default"].createElement("button", {
+    className: styles.btnDelete,
+    onClick: props.onBtnEditPress
+  }, "E"), react_1["default"].createElement("form", {
     method: "post",
     action: '/product/' + product.id
   }, react_1["default"].createElement(CSRF_1["default"], null), react_1["default"].createElement("input", {
@@ -672,7 +687,7 @@ var ProductPod = function ProductPod(props) {
     className: styles.btnDelete,
     type: "submit",
     value: "D"
-  })));
+  }))));
 };
 
 exports.default = ProductPod;
@@ -707,7 +722,11 @@ var useStyles = react_jss_1.createUseStyles({
     alignSelf: 'flex-end',
     height: 40,
     width: 40,
-    borderRadius: 20
+    borderRadius: 20,
+    marginRight: '0.7em'
+  },
+  btnGroup: {
+    display: 'flex'
   }
 });
 

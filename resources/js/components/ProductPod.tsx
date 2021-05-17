@@ -4,7 +4,8 @@ import { createUseStyles } from 'react-jss'
 import CSRF from './CSRF'
 
 interface Props {
-    product : Product
+    product : Product,
+    onBtnEditPress? : () => void
 }
 
 const ProductPod : React.FC<Props> = (props) => {
@@ -18,11 +19,14 @@ const ProductPod : React.FC<Props> = (props) => {
                 <div className={styles.txtName}>{product.name + ' - R$' + product.price.toFixed(2)}</div>
                 <div className={styles.txtDescription}>{product.description}</div>
             </div>
-            <form method="post" action={'/product/' + product.id}>
-                <CSRF/>
-                <input type="hidden" name="_method" value="DELETE"/>
-                <input className={styles.btnDelete} type="submit" value="D"/>
-            </form>
+            <div className={styles.btnGroup}>
+                <button className={styles.btnDelete} onClick={props.onBtnEditPress}>E</button>
+                <form method="post" action={'/product/' + product.id}>
+                    <CSRF/>
+                    <input type="hidden" name="_method" value="DELETE"/>
+                    <input className={styles.btnDelete} type="submit" value="D"/>
+                </form>
+            </div>
         </div>
     )
 
@@ -61,6 +65,10 @@ const useStyles = createUseStyles({
         alignSelf : 'flex-end',
         height : 40,
         width : 40,
-        borderRadius : 20
+        borderRadius : 20,
+        marginRight : '0.7em'
+    },
+    btnGroup : {
+        display : 'flex'
     }
 })

@@ -15,6 +15,7 @@ const ProductList : React.FC<Props> = (props) => {
     const products = props.products
 
     const [search, setSearch] = useState('')
+    const [selectedProduct, setSelectedProduct] = useState<number>();
     const [showForm, setShowForm] = useState(false)
     const [searchResult, setSearchResult] = useState<Array<Product>>(products)
 
@@ -39,9 +40,12 @@ const ProductList : React.FC<Props> = (props) => {
                 </div>
             }
             <div className={styles.list}>
-                {searchResult.map(product => (<>
-                    <ProductPod key={product.id} product={product}/>
-                </>))}
+                {searchResult.map(product => (
+                    selectedProduct === product.id ?
+                        <ProductForm key={product.id} product={product}/>
+                    :
+                        <ProductPod key={product.id} onBtnEditPress={() => setSelectedProduct(product.id)} product={product}/>
+                ))}
             </div>
         </div>
     )
