@@ -369,6 +369,88 @@ exports.default = CSRF;
 
 /***/ }),
 
+/***/ "./resources/js/components/UserForm.tsx":
+/*!**********************************************!*\
+  !*** ./resources/js/components/UserForm.tsx ***!
+  \**********************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var CSRF_1 = __importDefault(__webpack_require__(/*! ./CSRF */ "./resources/js/components/CSRF.tsx"));
+
+var react_jss_1 = __webpack_require__(/*! react-jss */ "./node_modules/react-jss/dist/react-jss.esm.js");
+
+var UserForm = function UserForm(props) {
+  var styles = useStyles();
+  var register = props.register;
+  return react_1["default"].createElement("form", {
+    className: styles.container,
+    method: "post",
+    action: register ? '/user' : '/user/authenticate'
+  }, react_1["default"].createElement(CSRF_1["default"], null), register && react_1["default"].createElement(react_1["default"].Fragment, null, react_1["default"].createElement("input", {
+    className: styles.input,
+    type: "text",
+    name: "name",
+    placeholder: "Insira seu nome"
+  }), " ", react_1["default"].createElement("br", null)), react_1["default"].createElement("input", {
+    className: styles.input,
+    type: "text",
+    name: "email",
+    placeholder: "Insira seu e-mail"
+  }), " ", react_1["default"].createElement("br", null), react_1["default"].createElement("input", {
+    className: styles.input,
+    type: "password",
+    name: "password",
+    placeholder: "Insira sua senha"
+  }), " ", react_1["default"].createElement("br", null), react_1["default"].createElement("input", {
+    className: styles.btnSubmit,
+    type: "submit",
+    value: "Registar"
+  }));
+};
+
+exports.default = UserForm;
+var useStyles = react_jss_1.createUseStyles({
+  container: {
+    backgroundColor: 'coral',
+    padding: '1.5em',
+    borderRadius: 5
+  },
+  input: {
+    border: 'none',
+    outline: 'none',
+    padding: '1em',
+    borderRadius: 5,
+    marginBottom: '1em',
+    width: '20em'
+  },
+  btnSubmit: {
+    width: '100%',
+    padding: '1em',
+    borderRadius: 5,
+    backgroundColor: 'lightsalmon',
+    border: 'none',
+    color: 'white',
+    fontWeight: 'bold'
+  }
+});
+
+/***/ }),
+
 /***/ "./resources/js/views/user/create.tsx":
 /*!********************************************!*\
   !*** ./resources/js/views/user/create.tsx ***!
@@ -390,7 +472,7 @@ Object.defineProperty(exports, "__esModule", ({
 
 var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 
-var CSRF_1 = __importDefault(__webpack_require__(/*! ../../components/CSRF */ "./resources/js/components/CSRF.tsx"));
+var UserForm_1 = __importDefault(__webpack_require__(/*! ../../components/UserForm */ "./resources/js/components/UserForm.tsx"));
 
 var react_dom_1 = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 
@@ -400,30 +482,9 @@ var Create = function Create() {
   var styles = useStyles();
   return react_1["default"].createElement("div", {
     className: styles.container
-  }, react_1["default"].createElement("form", {
-    className: styles.form,
-    method: "post",
-    action: "/user"
-  }, react_1["default"].createElement(CSRF_1["default"], null), react_1["default"].createElement("input", {
-    className: styles.input,
-    type: "text",
-    name: "name",
-    placeholder: "Insira seu nome"
-  }), " ", react_1["default"].createElement("br", null), react_1["default"].createElement("input", {
-    className: styles.input,
-    type: "text",
-    name: "email",
-    placeholder: "Insira seu e-mail"
-  }), " ", react_1["default"].createElement("br", null), react_1["default"].createElement("input", {
-    className: styles.input,
-    type: "password",
-    name: "password",
-    placeholder: "Insira sua senha"
-  }), " ", react_1["default"].createElement("br", null), react_1["default"].createElement("input", {
-    className: styles.btnSubmit,
-    type: "submit",
-    value: "Registar"
-  })));
+  }, react_1["default"].createElement(UserForm_1["default"], {
+    register: true
+  }));
 };
 
 var useStyles = react_jss_1.createUseStyles({
@@ -433,28 +494,6 @@ var useStyles = react_jss_1.createUseStyles({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center'
-  },
-  form: {
-    backgroundColor: 'coral',
-    padding: '1.5em',
-    borderRadius: 5
-  },
-  input: {
-    border: 'none',
-    outline: 'none',
-    padding: '1em',
-    borderRadius: 5,
-    marginBottom: '1em',
-    width: '20em'
-  },
-  btnSubmit: {
-    width: '100%',
-    padding: '1em',
-    borderRadius: 5,
-    backgroundColor: 'lightsalmon',
-    border: 'none',
-    color: 'white',
-    fontWeight: 'bold'
   }
 });
 var root = document.getElementById('root');

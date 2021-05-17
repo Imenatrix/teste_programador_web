@@ -3,13 +3,13 @@ import UserForm from '../../components/UserForm'
 import { render } from 'react-dom'
 import { createUseStyles } from 'react-jss'
 
-const Create : React.FC = () => {
+const Login : React.FC = () => {
 
     const styles = useStyles()
 
     return (
         <div className={styles.container}>
-            <UserForm register/>
+            <UserForm/>
         </div>
     )
 
@@ -26,4 +26,4 @@ const useStyles = createUseStyles({
 })
 
 const root = document.getElementById('root')
-render(<Create/>, root)
+render(<Login/>, root)
