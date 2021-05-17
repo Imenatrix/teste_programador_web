@@ -1,18 +1,25 @@
 import React from 'react'
 import CSRF from './CSRF'
 import { createUseStyles } from 'react-jss'
+import Product from '../interfaces/Product'
 
-const ProductForm : React.FC = () => {
+interface Props {
+    product? : Product
+}
+
+const ProductForm : React.FC<Props> = (props) => {
 
     const styles = useStyles()
+    const product = props.product
 
     return (
-        <form className={styles.container} method="post" action='/product'>
+        <form className={styles.container} method="post" action={product ? '/product/' + product.id : '/product'}>
             <CSRF/>
-            <input className={styles.input} type="text" name="name" placeholder="Insira nome do produto"/> <br/>
-            <input className={styles.input} type="number" step="0.01" name="price" placeholder="Insira o preço do produto"/> <br/>
-            <textarea className={styles.input + ' ' + styles.txtDescription} name="description" placeholder="Insira descrição do produto"/> <br/>
-            <input className={styles.btnSubmit} type="submit" value="Adicionar"/>
+            <input type="hidden" name="_method" value="PATCH"/>
+            <input className={styles.input} type="text" name="name" defaultValue={product?.name} placeholder="Insira nome do produto"/> <br/>
+            <input className={styles.input} type="number" step="0.01" name="price" defaultValue={product?.price} placeholder="Insira o preço do produto"/> <br/>
+            <textarea className={styles.input + ' ' + styles.txtDescription} name="description" defaultValue={product?.description} placeholder="Insira descrição do produto"/> <br/>
+            <input className={styles.btnSubmit} type="submit" value={product ? 'Salvar' : 'Adicionar'}/>
         </form>
     )
 

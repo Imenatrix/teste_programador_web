@@ -394,31 +394,39 @@ var CSRF_1 = __importDefault(__webpack_require__(/*! ./CSRF */ "./resources/js/c
 
 var react_jss_1 = __webpack_require__(/*! react-jss */ "./node_modules/react-jss/dist/react-jss.esm.js");
 
-var ProductForm = function ProductForm() {
+var ProductForm = function ProductForm(props) {
   var styles = useStyles();
+  var product = props.product;
   return react_1["default"].createElement("form", {
     className: styles.container,
     method: "post",
-    action: '/product'
+    action: product ? '/product/' + product.id : '/product'
   }, react_1["default"].createElement(CSRF_1["default"], null), react_1["default"].createElement("input", {
+    type: "hidden",
+    name: "_method",
+    value: "PATCH"
+  }), react_1["default"].createElement("input", {
     className: styles.input,
     type: "text",
     name: "name",
+    defaultValue: product === null || product === void 0 ? void 0 : product.name,
     placeholder: "Insira nome do produto"
   }), " ", react_1["default"].createElement("br", null), react_1["default"].createElement("input", {
     className: styles.input,
     type: "number",
     step: "0.01",
     name: "price",
+    defaultValue: product === null || product === void 0 ? void 0 : product.price,
     placeholder: "Insira o pre\xE7o do produto"
   }), " ", react_1["default"].createElement("br", null), react_1["default"].createElement("textarea", {
     className: styles.input + ' ' + styles.txtDescription,
     name: "description",
+    defaultValue: product === null || product === void 0 ? void 0 : product.description,
     placeholder: "Insira descri\xE7\xE3o do produto"
   }), " ", react_1["default"].createElement("br", null), react_1["default"].createElement("input", {
     className: styles.btnSubmit,
     type: "submit",
-    value: "Adicionar"
+    value: product ? 'Salvar' : 'Adicionar'
   }));
 };
 
