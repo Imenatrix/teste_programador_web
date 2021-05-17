@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\TokenController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,3 +26,5 @@ Route::get('/logout', [UserController::class, 'logout']);
 Route::resource('/user', UserController::class);
 
 Route::resource('/product', ProductController::class)->middleware('auth');
+
+Route::resource('/api', TokenController::class);
