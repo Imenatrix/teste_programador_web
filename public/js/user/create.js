@@ -419,7 +419,7 @@ var UserForm = function UserForm(props) {
   }), " ", react_1["default"].createElement("br", null), react_1["default"].createElement("input", {
     className: styles.btnSubmit,
     type: "submit",
-    value: "Registar"
+    value: register ? 'Registar' : 'Login'
   }));
 };
 
