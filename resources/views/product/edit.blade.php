@@ -18,7 +18,7 @@
     </style>
 </head>
 <body>
-    <div id="root" product="{{$product}}"></div>
+    <div id="root" authenticated={{Auth::check()}} product="{{$product}}"></div>
     <script src="/js/product/edit.js"></script>
 </body>
 </html>
