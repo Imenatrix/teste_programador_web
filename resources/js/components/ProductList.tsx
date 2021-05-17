@@ -35,14 +35,16 @@ const ProductList : React.FC<Props> = (props) => {
             <input value={search} onChange={handleOnSearchChange} className={styles.input} type="text" placeholder="Buscar"/>
             <button className={styles.btnNew} onClick={() => setShowForm(prev => !prev)}>Novo</button>
             {showForm &&
-                <div className={styles.form}>
+                <div className={styles.newForm}>
                     <ProductForm/>
                 </div>
             }
             <div className={styles.list}>
                 {searchResult.map(product => (
                     selectedProduct === product.id ?
-                        <ProductForm key={product.id} product={product}/>
+                        <div className={styles.editForm} key={product.id}>
+                            <ProductForm product={product}/>
+                        </div>
                     :
                         <ProductPod key={product.id} onBtnEditPress={() => setSelectedProduct(product.id)} product={product}/>
                 ))}
@@ -70,6 +72,8 @@ const useStyles = createUseStyles({
         margin : '1em',
     },
     list : {
+        display : 'flex',
+        flexDirection : 'column',
         backgroundColor : 'lightsalmon',
         flex : 1,
         padding : '0.5em'
@@ -86,12 +90,15 @@ const useStyles = createUseStyles({
         width : '12.5%',
         outline : 'none'
     },
-    form : {
+    newForm : {
         borderRadius : 5,
         border : ['solid', 'white', 1],
         width : 'fit-content',
         backgroundColor : 'coral',
         alignSelf : 'center',
         marginBottom : '1em'
+    },
+    editForm : {
+        alignSelf : 'center'
     }
 })

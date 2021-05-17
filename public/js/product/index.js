@@ -575,14 +575,16 @@ var ProductList = function ProductList(props) {
       });
     }
   }, "Novo"), showForm && react_1["default"].createElement("div", {
-    className: styles.form
+    className: styles.newForm
   }, react_1["default"].createElement(ProductForm_1["default"], null)), react_1["default"].createElement("div", {
     className: styles.list
   }, searchResult.map(function (product) {
-    return selectedProduct === product.id ? react_1["default"].createElement(ProductForm_1["default"], {
-      key: product.id,
+    return selectedProduct === product.id ? react_1["default"].createElement("div", {
+      className: styles.editForm,
+      key: product.id
+    }, react_1["default"].createElement(ProductForm_1["default"], {
       product: product
-    }) : react_1["default"].createElement(ProductPod_1["default"], {
+    })) : react_1["default"].createElement(ProductPod_1["default"], {
       key: product.id,
       onBtnEditPress: function onBtnEditPress() {
         return setSelectedProduct(product.id);
@@ -609,6 +611,8 @@ var useStyles = react_jss_1.createUseStyles({
     margin: '1em'
   },
   list: {
+    display: 'flex',
+    flexDirection: 'column',
     backgroundColor: 'lightsalmon',
     flex: 1,
     padding: '0.5em'
@@ -625,13 +629,16 @@ var useStyles = react_jss_1.createUseStyles({
     width: '12.5%',
     outline: 'none'
   },
-  form: {
+  newForm: {
     borderRadius: 5,
     border: ['solid', 'white', 1],
     width: 'fit-content',
     backgroundColor: 'coral',
     alignSelf: 'center',
     marginBottom: '1em'
+  },
+  editForm: {
+    alignSelf: 'center'
   }
 });
 
