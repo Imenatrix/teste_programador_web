@@ -19,6 +19,6 @@
 </head>
 <body>
     <div id="root"></div>
-    <script src="/js/login.js"></script>
+    <script src="/js/user/login.js"></script>
 </body>
 </html>
