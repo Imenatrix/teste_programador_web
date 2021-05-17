@@ -333,6 +333,128 @@ function memoize(fn) {
 
 /***/ }),
 
+/***/ "./resources/js/components/CSRF.tsx":
+/*!******************************************!*\
+  !*** ./resources/js/components/CSRF.tsx ***!
+  \******************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var CSRF = function CSRF() {
+  var _a;
+
+  var csrf_token = (_a = document.querySelector('meta[name="csrf_token"]')) === null || _a === void 0 ? void 0 : _a.getAttribute('content');
+  return react_1["default"].createElement(react_1["default"].Fragment, null, " ", csrf_token != null && react_1["default"].createElement("input", {
+    type: "hidden",
+    name: "_token",
+    value: csrf_token
+  }), " ");
+};
+
+exports.default = CSRF;
+
+/***/ }),
+
+/***/ "./resources/js/components/ProductForm.tsx":
+/*!*************************************************!*\
+  !*** ./resources/js/components/ProductForm.tsx ***!
+  \*************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var CSRF_1 = __importDefault(__webpack_require__(/*! ./CSRF */ "./resources/js/components/CSRF.tsx"));
+
+var react_jss_1 = __webpack_require__(/*! react-jss */ "./node_modules/react-jss/dist/react-jss.esm.js");
+
+var ProductForm = function ProductForm() {
+  var styles = useStyles();
+  return react_1["default"].createElement("form", {
+    className: styles.container,
+    method: "post",
+    action: '/product'
+  }, react_1["default"].createElement(CSRF_1["default"], null), react_1["default"].createElement("input", {
+    className: styles.input,
+    type: "text",
+    name: "name",
+    placeholder: "Insira nome do produto"
+  }), " ", react_1["default"].createElement("br", null), react_1["default"].createElement("input", {
+    className: styles.input,
+    type: "number",
+    step: "0.01",
+    name: "price",
+    placeholder: "Insira o pre\xE7o do produto"
+  }), " ", react_1["default"].createElement("br", null), react_1["default"].createElement("textarea", {
+    className: styles.input + ' ' + styles.txtDescription,
+    name: "description",
+    placeholder: "Insira descri\xE7\xE3o do produto"
+  }), " ", react_1["default"].createElement("br", null), react_1["default"].createElement("input", {
+    className: styles.btnSubmit,
+    type: "submit",
+    value: "Adicionar"
+  }));
+};
+
+exports.default = ProductForm;
+var useStyles = react_jss_1.createUseStyles({
+  container: {
+    backgroundColor: 'coral',
+    padding: '1.5em',
+    borderRadius: 5,
+    width: 'fit-content'
+  },
+  input: {
+    border: 'none',
+    outline: 'none',
+    padding: '1em',
+    borderRadius: 5,
+    marginBottom: '1em',
+    width: '20em'
+  },
+  btnSubmit: {
+    width: '100%',
+    padding: '1em',
+    borderRadius: 5,
+    backgroundColor: 'lightsalmon',
+    border: 'none',
+    color: 'white',
+    fontWeight: 'bold'
+  },
+  txtDescription: {
+    height: '10em',
+    resize: 'none'
+  }
+});
+
+/***/ }),
+
 /***/ "./resources/js/components/ProductList.tsx":
 /*!*************************************************!*\
   !*** ./resources/js/components/ProductList.tsx ***!
@@ -390,6 +512,8 @@ var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/reac
 
 var ProductPod_1 = __importDefault(__webpack_require__(/*! ./ProductPod */ "./resources/js/components/ProductPod.tsx"));
 
+var ProductForm_1 = __importDefault(__webpack_require__(/*! ./ProductForm */ "./resources/js/components/ProductForm.tsx"));
+
 var react_jss_1 = __webpack_require__(/*! react-jss */ "./node_modules/react-jss/dist/react-jss.esm.js");
 
 var fuse_js_1 = __importDefault(__webpack_require__(/*! fuse.js */ "./node_modules/fuse.js/dist/fuse.esm.js"));
@@ -427,7 +551,11 @@ var ProductList = function ProductList(props) {
     className: styles.input,
     type: "text",
     placeholder: "Buscar"
-  }), react_1["default"].createElement("div", {
+  }), react_1["default"].createElement("button", {
+    className: styles.btnNew
+  }, "Novo"), react_1["default"].createElement("div", {
+    className: styles.form
+  }, react_1["default"].createElement(ProductForm_1["default"], null)), react_1["default"].createElement("div", {
     className: styles.list
   }, searchResult.map(function (product) {
     return react_1["default"].createElement(react_1["default"].Fragment, null, react_1["default"].createElement(ProductPod_1["default"], {
@@ -444,8 +572,7 @@ var useStyles = react_jss_1.createUseStyles({
     flexDirection: 'column',
     backgroundColor: 'coral',
     borderRadius: 5,
-    width: '75vw',
-    height: '75vh'
+    flex: 1
   },
   input: {
     border: 'none',
@@ -458,6 +585,25 @@ var useStyles = react_jss_1.createUseStyles({
     backgroundColor: 'lightsalmon',
     flex: 1,
     padding: '0.5em'
+  },
+  btnNew: {
+    padding: '0.5em',
+    borderRadius: 5,
+    backgroundColor: 'lightsalmon',
+    border: 'none',
+    color: 'white',
+    fontWeight: 'bold',
+    margin: '1em',
+    marginTop: 0,
+    width: '25%'
+  },
+  form: {
+    borderRadius: 5,
+    border: ['solid', 'white', 1],
+    width: 'fit-content',
+    backgroundColor: 'coral',
+    alignSelf: 'center',
+    marginBottom: '1em'
   }
 });
 
@@ -557,10 +703,14 @@ var Index = function Index(props) {
 var useStyles = react_jss_1.createUseStyles({
   container: {
     width: '100vw',
-    height: '100vh',
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    paddingTop: '12.5vh',
+    paddingLeft: '12.5vw',
+    paddingRight: '12.5vw',
+    boxSizing: 'border-box',
+    paddingBottom: 0
   }
 });
 var root = document.getElementById('root');

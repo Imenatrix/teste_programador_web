@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Product from '../interfaces/Product'
 import ProductPod from './ProductPod'
+import ProductForm from './ProductForm'
 import { createUseStyles } from 'react-jss'
 import Fuse from 'fuse.js'
 
@@ -30,6 +31,10 @@ const ProductList : React.FC<Props> = (props) => {
     return(
         <div className={styles.container}>
             <input value={search} onChange={handleOnSearchChange} className={styles.input} type="text" placeholder="Buscar"/>
+            <button className={styles.btnNew}>Novo</button>
+            <div className={styles.form}>
+                <ProductForm/>
+            </div>
             <div className={styles.list}>
                 {searchResult.map(product => (<>
                     <ProductPod key={product.id} product={product}/>
@@ -48,8 +53,7 @@ const useStyles = createUseStyles({
         flexDirection : 'column',
         backgroundColor : 'coral',
         borderRadius : 5,
-        width : '75vw',
-        height : '75vh'
+        flex : 1
     },
     input : {
         border : 'none',
@@ -62,5 +66,24 @@ const useStyles = createUseStyles({
         backgroundColor : 'lightsalmon',
         flex : 1,
         padding : '0.5em'
+    },
+    btnNew : {
+        padding : '0.5em',
+        borderRadius : 5,
+        backgroundColor : 'lightsalmon',
+        border : 'none',
+        color : 'white',
+        fontWeight : 'bold',
+        margin : '1em',
+        marginTop : 0,
+        width : '25%'
+    },
+    form : {
+        borderRadius : 5,
+        border : ['solid', 'white', 1],
+        width : 'fit-content',
+        backgroundColor : 'coral',
+        alignSelf : 'center',
+        marginBottom : '1em'
     }
 })

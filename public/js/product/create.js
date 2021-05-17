@@ -427,7 +427,8 @@ var useStyles = react_jss_1.createUseStyles({
   container: {
     backgroundColor: 'coral',
     padding: '1.5em',
-    borderRadius: 5
+    borderRadius: 5,
+    width: 'fit-content'
   },
   input: {
     border: 'none',
