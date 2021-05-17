@@ -401,7 +401,7 @@ var ProductForm = function ProductForm(props) {
     className: styles.container,
     method: "post",
     action: product ? '/product/' + product.id : '/product'
-  }, react_1["default"].createElement(CSRF_1["default"], null), react_1["default"].createElement("input", {
+  }, react_1["default"].createElement(CSRF_1["default"], null), product && react_1["default"].createElement("input", {
     type: "hidden",
     name: "_method",
     value: "PATCH"
