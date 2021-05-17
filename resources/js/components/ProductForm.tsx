@@ -15,7 +15,9 @@ const ProductForm : React.FC<Props> = (props) => {
     return (
         <form className={styles.container} method="post" action={product ? '/product/' + product.id : '/product'}>
             <CSRF/>
-            <input type="hidden" name="_method" value="PATCH"/>
+            {product &&
+                <input type="hidden" name="_method" value="PATCH"/>
+            }
             <input className={styles.input} type="text" name="name" defaultValue={product?.name} placeholder="Insira nome do produto"/> <br/>
             <input className={styles.input} type="number" step="0.01" name="price" defaultValue={product?.price} placeholder="Insira o preço do produto"/> <br/>
             <textarea className={styles.input + ' ' + styles.txtDescription} name="description" defaultValue={product?.description} placeholder="Insira descrição do produto"/> <br/>
