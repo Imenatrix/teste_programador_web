@@ -333,10 +333,10 @@ function memoize(fn) {
 
 /***/ }),
 
-/***/ "./resources/js/views/home.tsx":
-/*!*************************************!*\
-  !*** ./resources/js/views/home.tsx ***!
-  \*************************************/
+/***/ "./resources/js/components/TopNav.tsx":
+/*!********************************************!*\
+  !*** ./resources/js/components/TopNav.tsx ***!
+  \********************************************/
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -356,12 +356,10 @@ var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/r
 
 var react_jss_1 = __webpack_require__(/*! react-jss */ "./node_modules/react-jss/dist/react-jss.esm.js");
 
-var react_dom_1 = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-
-var Home = function Home(props) {
+var TopNav = function TopNav(props) {
   var styles = useStyles();
   return react_1["default"].createElement("nav", {
-    className: styles.topbar
+    className: styles.container
   }, react_1["default"].createElement("a", {
     className: styles.link,
     href: "/"
@@ -385,8 +383,9 @@ var Home = function Home(props) {
   }, "Registrar")));
 };
 
+exports.default = TopNav;
 var useStyles = react_jss_1.createUseStyles({
-  topbar: {
+  container: {
     display: 'flex',
     backgroundColor: 'coral',
     height: 50,
@@ -403,6 +402,40 @@ var useStyles = react_jss_1.createUseStyles({
     flex: 1
   }
 });
+
+/***/ }),
+
+/***/ "./resources/js/views/home.tsx":
+/*!*************************************!*\
+  !*** ./resources/js/views/home.tsx ***!
+  \*************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var react_dom_1 = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+
+var TopNav_1 = __importDefault(__webpack_require__(/*! ../components/TopNav */ "./resources/js/components/TopNav.tsx"));
+
+var Home = function Home(props) {
+  return react_1["default"].createElement(TopNav_1["default"], {
+    authenticated: props.authenticated
+  });
+};
+
 var root = document.getElementById('root');
 var authenticated = (root === null || root === void 0 ? void 0 : root.getAttribute('authenticated')) === '1';
 react_dom_1.render(react_1["default"].createElement(Home, {
