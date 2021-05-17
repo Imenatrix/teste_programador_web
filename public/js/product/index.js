@@ -373,18 +373,6 @@ var ProductList = function ProductList(props) {
     return react_1["default"].createElement(react_1["default"].Fragment, null, react_1["default"].createElement(ProductPod_1["default"], {
       key: product.id,
       product: product
-    }), react_1["default"].createElement(ProductPod_1["default"], {
-      key: product.id,
-      product: product
-    }), react_1["default"].createElement(ProductPod_1["default"], {
-      key: product.id,
-      product: product
-    }), react_1["default"].createElement(ProductPod_1["default"], {
-      key: product.id,
-      product: product
-    }), react_1["default"].createElement(ProductPod_1["default"], {
-      key: product.id,
-      product: product
     }));
   })));
 };

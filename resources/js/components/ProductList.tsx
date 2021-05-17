@@ -18,10 +18,6 @@ const ProductList : React.FC<Props> = (props) => {
             <div className={styles.list}>
                 {products.map(product => (<>
                     <ProductPod key={product.id} product={product}/>
-                    <ProductPod key={product.id} product={product}/>
-                    <ProductPod key={product.id} product={product}/>
-                    <ProductPod key={product.id} product={product}/>
-                    <ProductPod key={product.id} product={product}/>
                 </>))}
             </div>
         </div>
