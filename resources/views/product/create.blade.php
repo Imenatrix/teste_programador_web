@@ -18,7 +18,7 @@
     </style>
 </head>
 <body>
-    <div id="root"></div>
+    <div id="root" authenticated={{Auth::check()}}></div>
     <script src="/js/product/create.js"></script>
 </body>
 </html>

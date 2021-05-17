@@ -2,21 +2,29 @@ import React from 'react'
 import ProductForm from '../../components/ProductForm'
 import { render } from 'react-dom'
 import { createUseStyles } from 'react-jss'
+import TopNav from '../../components/TopNav'
 
-const Create : React.FC = () => {
+interface Props {
+    authenticated : boolean
+}
+
+const Create : React.FC<Props> = (props) => {
 
     const styles = useStyles()
 
     return (
-        <div className={styles.container}>
-            <ProductForm/>
+        <div>
+            <TopNav authenticated={props.authenticated}/>
+            <div className={styles.content}>
+                <ProductForm/>
+            </div>
         </div>
     )
 
 }
 
 const useStyles = createUseStyles({
-    container : {
+    content : {
         width : '100vw',
         height : '100vh',
         display : 'flex',
@@ -26,4 +34,5 @@ const useStyles = createUseStyles({
 })
 
 const root = document.getElementById('root')
-render(<Create/>, root)
+const authenticated = root?.getAttribute('authenticated') === '1'
+render(<Create authenticated={authenticated}/>, root)
