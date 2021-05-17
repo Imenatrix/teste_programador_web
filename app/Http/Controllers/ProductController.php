@@ -80,6 +80,9 @@ class ProductController extends Controller
             'price' => ['required', 'numeric'],
             'description' => []
         ]);
+        if ($validated['description'] == null) {
+            $validated['description'] = '';
+        }
         $product->update($validated);
         return redirect('/product');
     }
