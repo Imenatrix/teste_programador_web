@@ -642,16 +642,29 @@ var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/r
 
 var react_jss_1 = __webpack_require__(/*! react-jss */ "./node_modules/react-jss/dist/react-jss.esm.js");
 
+var CSRF_1 = __importDefault(__webpack_require__(/*! ./CSRF */ "./resources/js/components/CSRF.tsx"));
+
 var ProductPod = function ProductPod(props) {
   var styles = useStyles();
   var product = props.product;
   return react_1["default"].createElement("div", {
     className: styles.container
-  }, react_1["default"].createElement("div", {
+  }, react_1["default"].createElement("div", null, react_1["default"].createElement("div", {
     className: styles.txtName
   }, product.name + ' - R$' + product.price.toFixed(2)), react_1["default"].createElement("div", {
     className: styles.txtDescription
-  }, product.description));
+  }, product.description)), react_1["default"].createElement("form", {
+    method: "post",
+    action: '/product/' + product.id
+  }, react_1["default"].createElement(CSRF_1["default"], null), react_1["default"].createElement("input", {
+    type: "hidden",
+    name: "_method",
+    value: "DELETE"
+  }), react_1["default"].createElement("input", {
+    className: styles.btnDelete,
+    type: "submit",
+    value: "D"
+  })));
 };
 
 exports.default = ProductPod;
@@ -661,7 +674,10 @@ var useStyles = react_jss_1.createUseStyles({
     borderRadius: 5,
     padding: '0.3em',
     paddingLeft: '1em',
-    margin: '0.5em'
+    margin: '0.5em',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center'
   },
   txtName: {
     marginBottom: '0.5em',
@@ -669,6 +685,17 @@ var useStyles = react_jss_1.createUseStyles({
   },
   txtDescription: {
     fontSize: 10
+  },
+  btnDelete: {
+    backgroundColor: '#ff4e0d',
+    color: 'white',
+    fontWeight: 'bold',
+    border: 'none',
+    outline: 'none',
+    alignSelf: 'flex-end',
+    height: 40,
+    width: 40,
+    borderRadius: 20
   }
 });
 
