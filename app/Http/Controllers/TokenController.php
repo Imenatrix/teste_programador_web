@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TokenController extends Controller
 {
@@ -13,7 +14,7 @@ class TokenController extends Controller
      */
     public function index()
     {
-        //
+        return view('token.index', ['tokens' => Auth::user()->tokens]);
     }
 
     /**
@@ -34,7 +35,8 @@ class TokenController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $token = $request->user()->createToken($request->token_name);
+        return ['token' => $token->plainTextToken];
     }
 
     /**
