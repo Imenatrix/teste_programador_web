@@ -604,7 +604,8 @@ var useStyles = react_jss_1.createUseStyles({
     fontWeight: 'bold',
     margin: '1em',
     marginTop: 0,
-    width: '25%'
+    width: '12.5%',
+    outline: 'none'
   },
   form: {
     borderRadius: 5,
