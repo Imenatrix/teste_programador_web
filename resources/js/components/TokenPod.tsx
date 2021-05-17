@@ -1,5 +1,4 @@
 import React from 'react'
-import Product from '../interfaces/Product'
 import { createUseStyles } from 'react-jss'
 import CSRF from './CSRF'
 import Token from '../interfaces/Token'
@@ -18,7 +17,7 @@ const TokenPod : React.FC<Props> = (props) => {
             <div>
                 <div className={styles.txtName}>{token.name}</div>
             </div>
-            <form method="post" action={'/product/' + token.id}>
+            <form method="post" action={'/api/' + token.id}>
                 <CSRF/>
                 <input type="hidden" name="_method" value="DELETE"/>
                 <input className={styles.btn} type="submit" value="D"/>

@@ -520,7 +520,7 @@ var TokenPod = function TokenPod(props) {
     className: styles.txtName
   }, token.name)), react_1["default"].createElement("form", {
     method: "post",
-    action: '/product/' + token.id
+    action: '/api/' + token.id
   }, react_1["default"].createElement(CSRF_1["default"], null), react_1["default"].createElement("input", {
     type: "hidden",
     name: "_method",
