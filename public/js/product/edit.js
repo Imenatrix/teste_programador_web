@@ -333,10 +333,10 @@ function memoize(fn) {
 
 /***/ }),
 
-/***/ "./resources/js/views/home.tsx":
-/*!*************************************!*\
-  !*** ./resources/js/views/home.tsx ***!
-  \*************************************/
+/***/ "./resources/js/components/CSRF.tsx":
+/*!******************************************!*\
+  !*** ./resources/js/components/CSRF.tsx ***!
+  \******************************************/
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -354,59 +354,164 @@ Object.defineProperty(exports, "__esModule", ({
 
 var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 
+var CSRF = function CSRF() {
+  var _a;
+
+  var csrf_token = (_a = document.querySelector('meta[name="csrf_token"]')) === null || _a === void 0 ? void 0 : _a.getAttribute('content');
+  return react_1["default"].createElement(react_1["default"].Fragment, null, " ", csrf_token != null && react_1["default"].createElement("input", {
+    type: "hidden",
+    name: "_token",
+    value: csrf_token
+  }), " ");
+};
+
+exports.default = CSRF;
+
+/***/ }),
+
+/***/ "./resources/js/components/ProductForm.tsx":
+/*!*************************************************!*\
+  !*** ./resources/js/components/ProductForm.tsx ***!
+  \*************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var CSRF_1 = __importDefault(__webpack_require__(/*! ./CSRF */ "./resources/js/components/CSRF.tsx"));
+
 var react_jss_1 = __webpack_require__(/*! react-jss */ "./node_modules/react-jss/dist/react-jss.esm.js");
+
+var ProductForm = function ProductForm(props) {
+  var styles = useStyles();
+  var product = props.product;
+  return react_1["default"].createElement("form", {
+    className: styles.container,
+    method: "post",
+    action: product ? '/product/' + product.id : '/product'
+  }, react_1["default"].createElement(CSRF_1["default"], null), react_1["default"].createElement("input", {
+    type: "hidden",
+    name: "_method",
+    value: "PATCH"
+  }), react_1["default"].createElement("input", {
+    className: styles.input,
+    type: "text",
+    name: "name",
+    defaultValue: product === null || product === void 0 ? void 0 : product.name,
+    placeholder: "Insira nome do produto"
+  }), " ", react_1["default"].createElement("br", null), react_1["default"].createElement("input", {
+    className: styles.input,
+    type: "number",
+    step: "0.01",
+    name: "price",
+    defaultValue: product === null || product === void 0 ? void 0 : product.price,
+    placeholder: "Insira o pre\xE7o do produto"
+  }), " ", react_1["default"].createElement("br", null), react_1["default"].createElement("textarea", {
+    className: styles.input + ' ' + styles.txtDescription,
+    name: "description",
+    defaultValue: product === null || product === void 0 ? void 0 : product.description,
+    placeholder: "Insira descri\xE7\xE3o do produto"
+  }), " ", react_1["default"].createElement("br", null), react_1["default"].createElement("input", {
+    className: styles.btnSubmit,
+    type: "submit",
+    value: product ? 'Salvar' : 'Adicionar'
+  }));
+};
+
+exports.default = ProductForm;
+var useStyles = react_jss_1.createUseStyles({
+  container: {
+    backgroundColor: 'coral',
+    padding: '1.5em',
+    borderRadius: 5,
+    width: 'fit-content'
+  },
+  input: {
+    border: 'none',
+    outline: 'none',
+    padding: '1em',
+    borderRadius: 5,
+    marginBottom: '1em',
+    width: '20em'
+  },
+  btnSubmit: {
+    width: '100%',
+    padding: '1em',
+    borderRadius: 5,
+    backgroundColor: 'lightsalmon',
+    border: 'none',
+    color: 'white',
+    fontWeight: 'bold'
+  },
+  txtDescription: {
+    height: '10em',
+    resize: 'none'
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/views/product/edit.tsx":
+/*!*********************************************!*\
+  !*** ./resources/js/views/product/edit.tsx ***!
+  \*********************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var ProductForm_1 = __importDefault(__webpack_require__(/*! ../../components/ProductForm */ "./resources/js/components/ProductForm.tsx"));
 
 var react_dom_1 = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 
-var Home = function Home(props) {
+var react_jss_1 = __webpack_require__(/*! react-jss */ "./node_modules/react-jss/dist/react-jss.esm.js");
+
+var Edit = function Edit(props) {
   var styles = useStyles();
-  return react_1["default"].createElement("nav", {
-    className: styles.topbar
-  }, react_1["default"].createElement("a", {
-    className: styles.link,
-    href: "/"
-  }, "Home"), react_1["default"].createElement("a", {
-    className: styles.link,
-    href: "/product"
-  }, "Produtos"), react_1["default"].createElement("a", {
-    className: styles.link,
-    href: "/api"
-  }, "API"), react_1["default"].createElement("div", {
-    className: styles.spacer
-  }), props.authenticated ? react_1["default"].createElement("a", {
-    className: styles.link,
-    href: "/logout"
-  }, "Logout") : react_1["default"].createElement(react_1["default"].Fragment, null, react_1["default"].createElement("a", {
-    className: styles.link,
-    href: "/login"
-  }, "Login"), react_1["default"].createElement("a", {
-    className: styles.link,
-    href: "/user/create"
-  }, "Registrar")));
+  return react_1["default"].createElement("div", {
+    className: styles.container
+  }, react_1["default"].createElement(ProductForm_1["default"], {
+    product: props.product
+  }));
 };
 
 var useStyles = react_jss_1.createUseStyles({
-  topbar: {
+  container: {
+    width: '100vw',
+    height: '100vh',
     display: 'flex',
-    backgroundColor: 'coral',
-    height: 50,
-    alignItems: 'center',
-    paddingRight: '0.5em',
-    paddingLeft: '0.5em'
-  },
-  link: {
-    textDecoration: 'none',
-    color: 'ivory',
-    margin: '0.2em'
-  },
-  spacer: {
-    flex: 1
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 });
 var root = document.getElementById('root');
-var authenticated = (root === null || root === void 0 ? void 0 : root.getAttribute('authenticated')) === '1';
-react_dom_1.render(react_1["default"].createElement(Home, {
-  authenticated: authenticated
+var product = JSON.parse(root.getAttribute('product'));
+react_dom_1.render(react_1["default"].createElement(Edit, {
+  product: product
 }), root);
 
 /***/ }),
@@ -37473,7 +37578,7 @@ function warning(condition, message) {
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module is referenced by other modules so it can't be inlined
-/******/ 	var __webpack_exports__ = __webpack_require__("./resources/js/views/home.tsx");
+/******/ 	var __webpack_exports__ = __webpack_require__("./resources/js/views/product/edit.tsx");
 /******/ 	
 /******/ })()
 ;

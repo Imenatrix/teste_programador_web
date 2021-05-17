@@ -13,7 +13,7 @@ const Home : React.FC<Props> = (props) => {
     return (
         <nav className={styles.topbar}>
             <a className={styles.link} href="/">Home</a>
-            <a className={styles.link} href="/products">Produtos</a>
+            <a className={styles.link} href="/product">Produtos</a>
             <a className={styles.link} href="/api">API</a>
             <div className={styles.spacer}/>
             {props.authenticated ?
