@@ -858,8 +858,8 @@ var useStyles = react_jss_1.createUseStyles({
     justifyContent: 'center',
     alignItems: 'center',
     paddingTop: '12.5vh',
-    paddingLeft: '12.5vw',
-    paddingRight: '12.5vw',
+    paddingLeft: '25vw',
+    paddingRight: '25vw',
     boxSizing: 'border-box',
     paddingBottom: 0
   }
