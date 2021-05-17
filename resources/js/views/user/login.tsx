@@ -2,14 +2,22 @@ import React from 'react'
 import UserForm from '../../components/UserForm'
 import { render } from 'react-dom'
 import { createUseStyles } from 'react-jss'
+import TopNav from '../../components/TopNav'
 
-const Login : React.FC = () => {
+interface Props {
+    authenticated : boolean
+}
+
+const Login : React.FC<Props> = (props) => {
 
     const styles = useStyles()
 
     return (
         <div className={styles.container}>
-            <UserForm/>
+            <TopNav authenticated={props.authenticated}/>
+            <div className={styles.content}>
+                <UserForm/>
+            </div>
         </div>
     )
 
@@ -17,8 +25,13 @@ const Login : React.FC = () => {
 
 const useStyles = createUseStyles({
     container : {
+        display : 'flex',
+        flexDirection : 'column',
         width : '100vw',
-        height : '100vh',
+        height : '100vh'
+    },
+    content : {
+        flex : 1,
         display : 'flex',
         justifyContent : 'center',
         alignItems : 'center'
@@ -26,4 +39,5 @@ const useStyles = createUseStyles({
 })
 
 const root = document.getElementById('root')
-render(<Login/>, root)
+const authenticated = root?.getAttribute('authenticated') === '1'
+render(<Login authenticated={authenticated}/>, root)

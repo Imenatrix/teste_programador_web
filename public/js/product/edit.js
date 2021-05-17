@@ -463,6 +463,78 @@ var useStyles = react_jss_1.createUseStyles({
 
 /***/ }),
 
+/***/ "./resources/js/components/TopNav.tsx":
+/*!********************************************!*\
+  !*** ./resources/js/components/TopNav.tsx ***!
+  \********************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var react_jss_1 = __webpack_require__(/*! react-jss */ "./node_modules/react-jss/dist/react-jss.esm.js");
+
+var TopNav = function TopNav(props) {
+  var styles = useStyles();
+  return react_1["default"].createElement("nav", {
+    className: styles.container
+  }, react_1["default"].createElement("a", {
+    className: styles.link,
+    href: "/"
+  }, "Home"), react_1["default"].createElement("a", {
+    className: styles.link,
+    href: "/product"
+  }, "Produtos"), react_1["default"].createElement("a", {
+    className: styles.link,
+    href: "/api"
+  }, "API"), react_1["default"].createElement("div", {
+    className: styles.spacer
+  }), props.authenticated ? react_1["default"].createElement("a", {
+    className: styles.link,
+    href: "/logout"
+  }, "Logout") : react_1["default"].createElement(react_1["default"].Fragment, null, react_1["default"].createElement("a", {
+    className: styles.link,
+    href: "/login"
+  }, "Login"), react_1["default"].createElement("a", {
+    className: styles.link,
+    href: "/user/create"
+  }, "Registrar")));
+};
+
+exports.default = TopNav;
+var useStyles = react_jss_1.createUseStyles({
+  container: {
+    display: 'flex',
+    backgroundColor: 'coral',
+    height: 50,
+    alignItems: 'center',
+    paddingRight: '0.5em',
+    paddingLeft: '0.5em'
+  },
+  link: {
+    textDecoration: 'none',
+    color: 'ivory',
+    margin: '0.2em'
+  },
+  spacer: {
+    flex: 1
+  }
+});
+
+/***/ }),
+
 /***/ "./resources/js/views/product/edit.tsx":
 /*!*********************************************!*\
   !*** ./resources/js/views/product/edit.tsx ***!
@@ -490,19 +562,30 @@ var react_dom_1 = __webpack_require__(/*! react-dom */ "./node_modules/react-dom
 
 var react_jss_1 = __webpack_require__(/*! react-jss */ "./node_modules/react-jss/dist/react-jss.esm.js");
 
+var TopNav_1 = __importDefault(__webpack_require__(/*! ../../components/TopNav */ "./resources/js/components/TopNav.tsx"));
+
 var Edit = function Edit(props) {
   var styles = useStyles();
   return react_1["default"].createElement("div", {
     className: styles.container
+  }, react_1["default"].createElement(TopNav_1["default"], {
+    authenticated: props.authenticated
+  }), react_1["default"].createElement("div", {
+    className: styles.content
   }, react_1["default"].createElement(ProductForm_1["default"], {
     product: props.product
-  }));
+  })));
 };
 
 var useStyles = react_jss_1.createUseStyles({
   container: {
+    display: 'flex',
+    flexDirection: 'column',
     width: '100vw',
-    height: '100vh',
+    height: '100vh'
+  },
+  content: {
+    flex: 1,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center'
@@ -510,7 +593,9 @@ var useStyles = react_jss_1.createUseStyles({
 });
 var root = document.getElementById('root');
 var product = JSON.parse(root.getAttribute('product'));
+var authenticated = (root === null || root === void 0 ? void 0 : root.getAttribute('authenticated')) === '1';
 react_dom_1.render(react_1["default"].createElement(Edit, {
+  authenticated: authenticated,
   product: product
 }), root);
 
