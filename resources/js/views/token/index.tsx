@@ -3,6 +3,7 @@ import { render } from 'react-dom'
 import { createUseStyles } from 'react-jss'
 import TopNav from '../../components/TopNav'
 import Token from '../../interfaces/Token'
+import TokenList from '../../components/TokenList'
 
 interface Props {
     authenticated : boolean
@@ -12,13 +13,12 @@ interface Props {
 const Index : React.FC<Props> = (props) => {
 
     const styles = useStyles()
-    console.log(props.tokens)
     
     return (
         <div>
             <TopNav authenticated={props.authenticated}/>
             <div className={styles.content}>
-                
+                <TokenList tokens={props.tokens}/>
             </div>
         </div>
     )

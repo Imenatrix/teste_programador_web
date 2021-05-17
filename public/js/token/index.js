@@ -333,6 +333,239 @@ function memoize(fn) {
 
 /***/ }),
 
+/***/ "./resources/js/components/CSRF.tsx":
+/*!******************************************!*\
+  !*** ./resources/js/components/CSRF.tsx ***!
+  \******************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var CSRF = function CSRF() {
+  var _a;
+
+  var csrf_token = (_a = document.querySelector('meta[name="csrf_token"]')) === null || _a === void 0 ? void 0 : _a.getAttribute('content');
+  return react_1["default"].createElement(react_1["default"].Fragment, null, " ", csrf_token != null && react_1["default"].createElement("input", {
+    type: "hidden",
+    name: "_token",
+    value: csrf_token
+  }), " ");
+};
+
+exports.default = CSRF;
+
+/***/ }),
+
+/***/ "./resources/js/components/TokenList.tsx":
+/*!***********************************************!*\
+  !*** ./resources/js/components/TokenList.tsx ***!
+  \***********************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  Object.defineProperty(o, k2, {
+    enumerable: true,
+    get: function get() {
+      return m[k];
+    }
+  });
+} : function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  o[k2] = m[k];
+});
+
+var __setModuleDefault = this && this.__setModuleDefault || (Object.create ? function (o, v) {
+  Object.defineProperty(o, "default", {
+    enumerable: true,
+    value: v
+  });
+} : function (o, v) {
+  o["default"] = v;
+});
+
+var __importStar = this && this.__importStar || function (mod) {
+  if (mod && mod.__esModule) return mod;
+  var result = {};
+  if (mod != null) for (var k in mod) {
+    if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+  }
+
+  __setModuleDefault(result, mod);
+
+  return result;
+};
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var react_jss_1 = __webpack_require__(/*! react-jss */ "./node_modules/react-jss/dist/react-jss.esm.js");
+
+var TokenPod_1 = __importDefault(__webpack_require__(/*! ./TokenPod */ "./resources/js/components/TokenPod.tsx"));
+
+var TokenList = function TokenList(props) {
+  var styles = useStyles();
+  var tokens = props.tokens;
+
+  var _a = react_1.useState(false),
+      showForm = _a[0],
+      setShowForm = _a[1];
+
+  return react_1["default"].createElement("div", {
+    className: styles.container
+  }, react_1["default"].createElement("button", {
+    className: styles.btnNew,
+    onClick: function onClick() {
+      return setShowForm(function (prev) {
+        return !prev;
+      });
+    }
+  }, "Novo"), react_1["default"].createElement("div", {
+    className: styles.list
+  }, tokens.map(function (token) {
+    return react_1["default"].createElement(TokenPod_1["default"], {
+      key: token.id,
+      token: token
+    });
+  })));
+};
+
+exports.default = TokenList;
+var useStyles = react_jss_1.createUseStyles({
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    backgroundColor: 'coral',
+    borderRadius: 5,
+    flex: 1
+  },
+  list: {
+    display: 'flex',
+    flexDirection: 'column',
+    backgroundColor: 'lightsalmon',
+    flex: 1,
+    padding: '0.5em'
+  },
+  btnNew: {
+    padding: '0.5em',
+    borderRadius: 5,
+    backgroundColor: 'lightsalmon',
+    border: 'none',
+    color: 'white',
+    fontWeight: 'bold',
+    margin: '1em',
+    width: '12.5%',
+    outline: 'none'
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/components/TokenPod.tsx":
+/*!**********************************************!*\
+  !*** ./resources/js/components/TokenPod.tsx ***!
+  \**********************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var react_jss_1 = __webpack_require__(/*! react-jss */ "./node_modules/react-jss/dist/react-jss.esm.js");
+
+var CSRF_1 = __importDefault(__webpack_require__(/*! ./CSRF */ "./resources/js/components/CSRF.tsx"));
+
+var TokenPod = function TokenPod(props) {
+  var styles = useStyles();
+  var token = props.token;
+  return react_1["default"].createElement("div", {
+    className: styles.container
+  }, react_1["default"].createElement("div", null, react_1["default"].createElement("div", {
+    className: styles.txtName
+  }, token.name)), react_1["default"].createElement("form", {
+    method: "post",
+    action: '/product/' + token.id
+  }, react_1["default"].createElement(CSRF_1["default"], null), react_1["default"].createElement("input", {
+    type: "hidden",
+    name: "_method",
+    value: "DELETE"
+  }), react_1["default"].createElement("input", {
+    className: styles.btn,
+    type: "submit",
+    value: "D"
+  })));
+};
+
+exports.default = TokenPod;
+var useStyles = react_jss_1.createUseStyles({
+  container: {
+    backgroundColor: 'coral',
+    borderRadius: 5,
+    padding: '0.3em',
+    paddingLeft: '1em',
+    margin: '0.5em',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center'
+  },
+  txtName: {
+    marginBottom: '0.5em',
+    marginTop: '0.5em',
+    color: 'white',
+    fontWeight: 'bold'
+  },
+  btn: {
+    backgroundColor: '#ff4e0d',
+    color: 'white',
+    fontWeight: 'bold',
+    border: 'none',
+    outline: 'none',
+    alignSelf: 'flex-end',
+    height: 40,
+    width: 40,
+    borderRadius: 20,
+    marginRight: '0.7em'
+  }
+});
+
+/***/ }),
+
 /***/ "./resources/js/components/TopNav.tsx":
 /*!********************************************!*\
   !*** ./resources/js/components/TopNav.tsx ***!
@@ -432,14 +665,17 @@ var react_jss_1 = __webpack_require__(/*! react-jss */ "./node_modules/react-jss
 
 var TopNav_1 = __importDefault(__webpack_require__(/*! ../../components/TopNav */ "./resources/js/components/TopNav.tsx"));
 
+var TokenList_1 = __importDefault(__webpack_require__(/*! ../../components/TokenList */ "./resources/js/components/TokenList.tsx"));
+
 var Index = function Index(props) {
   var styles = useStyles();
-  console.log(props.tokens);
   return react_1["default"].createElement("div", null, react_1["default"].createElement(TopNav_1["default"], {
     authenticated: props.authenticated
   }), react_1["default"].createElement("div", {
     className: styles.content
-  }));
+  }, react_1["default"].createElement(TokenList_1["default"], {
+    tokens: props.tokens
+  })));
 };
 
 var useStyles = react_jss_1.createUseStyles({
