@@ -12,22 +12,22 @@ const fs = require('fs')
  |
  */
 
-const viewsDirs = [
-    'resources/js/views'
-]
+const viewsDirs = {
+    'resources/js/views' : ''
+}
 
-viewsDirs.forEach(viewsDir => {
-    compileReactViewsRecursively(viewsDir)
+Object.keys(viewsDirs).forEach(dir => {
+    compileReactViewsRecursively(dir, viewsDirs[dir])
 })
 
-function compileReactViewsRecursively(dir) {
+function compileReactViewsRecursively(dir, prefix) {
     const items = fs.readdirSync(dir)
     items.forEach(item => {
         if (item.endsWith('.tsx')) {
-            mix.ts(dir + '/' + item, 'public/js').react()
+            mix.ts(dir + '/' + item, 'public/js/' + prefix).react()
         }
         else {
-            compileReactViewsRecursively(dir + '/' + item)
+            compileReactViewsRecursively(dir + '/' + item, prefix + '/' + item)
         }
     })
 }

@@ -19,6 +19,6 @@
 </head>
 <body>
     <div id="root"></div>
-    <script src="/js/create.js"></script>
+    <script src="/js/user/create.js"></script>
 </body>
 </html>
