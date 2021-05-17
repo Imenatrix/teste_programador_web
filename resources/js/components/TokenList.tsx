@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { createUseStyles } from 'react-jss'
 import Token from '../interfaces/Token'
+import CSRF from './CSRF'
 import TokenPod from './TokenPod'
 
 interface Props {
@@ -12,16 +13,13 @@ const TokenList : React.FC<Props> = (props) => {
     const styles = useStyles()
     const tokens = props.tokens
 
-    const [showForm, setShowForm] = useState(false)
-
     return(
         <div className={styles.container}>
-            <button className={styles.btnNew} onClick={() => setShowForm(prev => !prev)}>Novo</button>
-            {/*showForm &&
-                <div className={styles.newForm}>
-                    <TokenForm/>
-                </div>
-            */}
+            <form className={styles.form} action='/api' method='post'>
+                <CSRF/>
+                <input className={styles.input} type="text" name="token_name" placeholder="Insira o nome do novo token"/>
+                <button className={styles.btnNew} type="submit">Novo</button>
+            </form>
             <div className={styles.list}>
                 {tokens.map(token => (
                     <TokenPod key={token.id} token={token}/>
@@ -41,6 +39,18 @@ const useStyles = createUseStyles({
         backgroundColor : 'coral',
         borderRadius : 5,
         flex : 1
+    },
+    input : {
+        flex : 1,
+        border : 'none',
+        outline : 'none',
+        padding : '0.5em',
+        borderRadius : 5,
+        margin : '1em',
+        marginRight : 0
+    },
+    form : {
+        display : 'flex'
     },
     list : {
         display : 'flex',
