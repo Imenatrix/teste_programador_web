@@ -13,7 +13,7 @@ const Create : React.FC<Props> = (props) => {
     const styles = useStyles()
 
     return (
-        <div>
+        <div className={styles.container}>
             <TopNav authenticated={props.authenticated}/>
             <div className={styles.content}>
                 <ProductForm/>
@@ -24,9 +24,14 @@ const Create : React.FC<Props> = (props) => {
 }
 
 const useStyles = createUseStyles({
-    content : {
+    container : {
+        display : 'flex',
+        flexDirection : 'column',
         width : '100vw',
-        height : '100vh',
+        height : '100vh'
+    },
+    content : {
+        flex : 1,
         display : 'flex',
         justifyContent : 'center',
         alignItems : 'center'
