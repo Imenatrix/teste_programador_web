@@ -670,7 +670,7 @@ var ProductPod = function ProductPod(props) {
 exports.default = ProductPod;
 var useStyles = react_jss_1.createUseStyles({
   container: {
-    backgroundColor: '#ffc3ad',
+    backgroundColor: 'coral',
     borderRadius: 5,
     padding: '0.3em',
     paddingLeft: '1em',
@@ -681,10 +681,14 @@ var useStyles = react_jss_1.createUseStyles({
   },
   txtName: {
     marginBottom: '0.5em',
-    marginTop: '0.5em'
+    marginTop: '0.5em',
+    color: 'white',
+    fontWeight: 'bold'
   },
   txtDescription: {
-    fontSize: 10
+    fontSize: 10,
+    color: 'white',
+    fontWeight: 'bold'
   },
   btnDelete: {
     backgroundColor: '#ff4e0d',
