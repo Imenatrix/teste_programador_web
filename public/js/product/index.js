@@ -526,9 +526,13 @@ var ProductList = function ProductList(props) {
       search = _a[0],
       setSearch = _a[1];
 
-  var _b = react_1.useState(products),
-      searchResult = _b[0],
-      setSearchResult = _b[1];
+  var _b = react_1.useState(false),
+      showForm = _b[0],
+      setShowForm = _b[1];
+
+  var _c = react_1.useState(products),
+      searchResult = _c[0],
+      setSearchResult = _c[1];
 
   function handleOnSearchChange(e) {
     var newSearch = e.target.value;
@@ -552,8 +556,13 @@ var ProductList = function ProductList(props) {
     type: "text",
     placeholder: "Buscar"
   }), react_1["default"].createElement("button", {
-    className: styles.btnNew
-  }, "Novo"), react_1["default"].createElement("div", {
+    className: styles.btnNew,
+    onClick: function onClick() {
+      return setShowForm(function (prev) {
+        return !prev;
+      });
+    }
+  }, "Novo"), showForm && react_1["default"].createElement("div", {
     className: styles.form
   }, react_1["default"].createElement(ProductForm_1["default"], null)), react_1["default"].createElement("div", {
     className: styles.list

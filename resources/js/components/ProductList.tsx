@@ -15,6 +15,7 @@ const ProductList : React.FC<Props> = (props) => {
     const products = props.products
 
     const [search, setSearch] = useState('')
+    const [showForm, setShowForm] = useState(false)
     const [searchResult, setSearchResult] = useState<Array<Product>>(products)
 
     function handleOnSearchChange(e : React.ChangeEvent<HTMLInputElement>) {
@@ -31,10 +32,12 @@ const ProductList : React.FC<Props> = (props) => {
     return(
         <div className={styles.container}>
             <input value={search} onChange={handleOnSearchChange} className={styles.input} type="text" placeholder="Buscar"/>
-            <button className={styles.btnNew}>Novo</button>
-            <div className={styles.form}>
-                <ProductForm/>
-            </div>
+            <button className={styles.btnNew} onClick={() => setShowForm(prev => !prev)}>Novo</button>
+            {showForm &&
+                <div className={styles.form}>
+                    <ProductForm/>
+                </div>
+            }
             <div className={styles.list}>
                 {searchResult.map(product => (<>
                     <ProductPod key={product.id} product={product}/>
