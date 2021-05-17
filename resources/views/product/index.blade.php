@@ -18,7 +18,7 @@
     </style>
 </head>
 <body>
-    <div id="root" authenticated={{Auth::check()}} products="{{$products->toJson()}}"></div>
+    <div id="root" authenticated="{{Auth::check()}}" products="{{$products->toJson()}}"></div>
     <script src="/js/product/index.js"></script>
 </body>
 </html>
