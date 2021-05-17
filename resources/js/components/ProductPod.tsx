@@ -2,6 +2,7 @@ import React from 'react'
 import Product from '../interfaces/Product'
 import { createUseStyles } from 'react-jss'
 import CSRF from './CSRF'
+import { MdEdit, MdClear } from 'react-icons/md'
 
 interface Props {
     product : Product,
@@ -20,11 +21,15 @@ const ProductPod : React.FC<Props> = (props) => {
                 <div className={styles.txtDescription}>{product.description}</div>
             </div>
             <div className={styles.btnGroup}>
-                <button className={styles.btnDelete} onClick={props.onBtnEditPress}>E</button>
+                <button className={styles.btn} onClick={props.onBtnEditPress}>
+                    <MdEdit/>
+                </button>
                 <form method="post" action={'/product/' + product.id}>
                     <CSRF/>
                     <input type="hidden" name="_method" value="DELETE"/>
-                    <input className={styles.btnDelete} type="submit" value="D"/>
+                    <button className={styles.btn} type="submit">
+                        <MdClear/>
+                    </button>
                 </form>
             </div>
         </div>
@@ -56,7 +61,7 @@ const useStyles = createUseStyles({
         color : 'white',
         fontWeight : 'bold'
     },
-    btnDelete : {
+    btn : {
         backgroundColor : '#ff4e0d',
         color : 'white',
         fontWeight : 'bold',
@@ -66,7 +71,11 @@ const useStyles = createUseStyles({
         height : 40,
         width : 40,
         borderRadius : 20,
-        marginRight : '0.7em'
+        marginRight : '0.7em',
+        display : 'flex',
+        justifyContent : 'center',
+        alignItems : 'center',
+        fontSize : 20
     },
     btnGroup : {
         display : 'flex'
