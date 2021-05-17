@@ -19,7 +19,7 @@ const UserForm : React.FC<Props> = (props) => {
             </> }
             <input className={styles.input} type="text" name="email" placeholder="Insira seu e-mail"/> <br/>
             <input className={styles.input} type="password" name="password" placeholder="Insira sua senha"/> <br/>
-            <input className={styles.btnSubmit} type="submit" value="Registar"/>
+            <input className={styles.btnSubmit} type="submit" value={register ? 'Registar' : 'Login'}/>
         </form>
     )
 
