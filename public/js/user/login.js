@@ -554,7 +554,9 @@ var TopNav_1 = __importDefault(__webpack_require__(/*! ../../components/TopNav *
 
 var Login = function Login(props) {
   var styles = useStyles();
-  return react_1["default"].createElement("div", null, react_1["default"].createElement(TopNav_1["default"], {
+  return react_1["default"].createElement("div", {
+    className: styles.container
+  }, react_1["default"].createElement(TopNav_1["default"], {
     authenticated: props.authenticated
   }), react_1["default"].createElement("div", {
     className: styles.content
@@ -562,9 +564,14 @@ var Login = function Login(props) {
 };
 
 var useStyles = react_jss_1.createUseStyles({
-  content: {
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
     width: '100vw',
-    height: '100vh',
+    height: '100vh'
+  },
+  content: {
+    flex: 1,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center'
