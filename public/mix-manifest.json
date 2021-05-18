@@ -3,6 +3,8 @@
     "/js/product/create.js": "/js/product/create.js",
     "/js/product/edit.js": "/js/product/edit.js",
     "/js/product/index.js": "/js/product/index.js",
+    "/js/token/index.js": "/js/token/index.js",
+    "/js/token/new_token.js": "/js/token/new_token.js",
     "/js/user/create.js": "/js/user/create.js",
     "/js/user/login.js": "/js/user/login.js"
 }
