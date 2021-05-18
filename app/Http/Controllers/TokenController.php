@@ -36,7 +36,7 @@ class TokenController extends Controller
     public function store(Request $request)
     {
         $token = $request->user()->createToken($request->token_name);
-        return ['token' => $token->plainTextToken];
+        return view('token.new_token', ['name' => $token->accessToken->name, 'token' => $token->plainTextToken]);
     }
 
     /**
