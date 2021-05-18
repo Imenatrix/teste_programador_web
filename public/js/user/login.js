@@ -606,7 +606,9 @@ var useStyles = react_jss_1.createUseStyles({
 });
 var root = document.getElementById('root');
 var authenticated = (root === null || root === void 0 ? void 0 : root.getAttribute('authenticated')) === '1';
+root === null || root === void 0 ? void 0 : root.removeAttribute('authenticated');
 var errorsObj = JSON.parse((root === null || root === void 0 ? void 0 : root.getAttribute('errors')) || '{}');
+root === null || root === void 0 ? void 0 : root.removeAttribute('errors');
 var errors = Object.values(errorsObj).reduce(function (prev, curr) {
   return prev.concat(curr);
 }, []);

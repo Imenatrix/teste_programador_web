@@ -683,8 +683,10 @@ var useStyles = react_jss_1.createUseStyles({
   }
 });
 var root = document.getElementById('root');
-var tokens = JSON.parse((root === null || root === void 0 ? void 0 : root.getAttribute('tokens')) || '[]');
 var authenticated = (root === null || root === void 0 ? void 0 : root.getAttribute('authenticated')) === '1';
+root === null || root === void 0 ? void 0 : root.removeAttribute('authenticated');
+var tokens = JSON.parse((root === null || root === void 0 ? void 0 : root.getAttribute('tokens')) || '[]');
+root === null || root === void 0 ? void 0 : root.removeAttribute('tokens');
 react_dom_1.render(react_1["default"].createElement(Index, {
   tokens: tokens,
   authenticated: authenticated

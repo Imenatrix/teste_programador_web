@@ -441,6 +441,7 @@ var Home = function Home(props) {
 
 var root = document.getElementById('root');
 var authenticated = (root === null || root === void 0 ? void 0 : root.getAttribute('authenticated')) === '1';
+root === null || root === void 0 ? void 0 : root.removeAttribute('authenticated');
 react_dom_1.render(react_1["default"].createElement(Home, {
   authenticated: authenticated
 }), root);

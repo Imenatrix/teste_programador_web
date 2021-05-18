@@ -40,6 +40,11 @@ const useStyles = createUseStyles({
 })
 
 const root = document.getElementById('root')
-const products : Array<Product> = JSON.parse(root?.getAttribute('products') || '[]')
+
 const authenticated = root?.getAttribute('authenticated') === '1'
+root?.removeAttribute('authenticated')
+
+const products : Array<Product> = JSON.parse(root?.getAttribute('products') || '[]')
+root?.removeAttribute('products')
+
 render(<Index authenticated={authenticated} products={products}/>, root)

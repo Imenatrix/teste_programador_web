@@ -42,9 +42,15 @@ const useStyles = createUseStyles({
 })
 
 const root = document.getElementById('root')
+
 const authenticated = root?.getAttribute('authenticated') === '1'
+root?.removeAttribute('authenticated')
+
 const errorsObj : {
     ['key'] : Array<string>
 } = JSON.parse(root?.getAttribute('errors') || '{}')
+root?.removeAttribute('errors')
+
 const errors = Object.values(errorsObj).reduce((prev, curr) => prev.concat(curr), [])
+
 render(<Login errors={errors} authenticated={authenticated}/>, root)

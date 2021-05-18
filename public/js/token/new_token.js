@@ -481,8 +481,11 @@ var useStyles = react_jss_1.createUseStyles({
 });
 var root = document.getElementById('root');
 var authenticated = (root === null || root === void 0 ? void 0 : root.getAttribute('authenticated')) === '1';
+root === null || root === void 0 ? void 0 : root.removeAttribute('authenticated');
 var name = (root === null || root === void 0 ? void 0 : root.getAttribute('name')) || '';
+root === null || root === void 0 ? void 0 : root.removeAttribute('name');
 var token = (root === null || root === void 0 ? void 0 : root.getAttribute('token')) || '';
+root === null || root === void 0 ? void 0 : root.removeAttribute('token');
 react_dom_1.render(react_1["default"].createElement(NewToken, {
   name: name,
   token: token,

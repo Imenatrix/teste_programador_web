@@ -879,8 +879,10 @@ var useStyles = react_jss_1.createUseStyles({
   }
 });
 var root = document.getElementById('root');
-var products = JSON.parse((root === null || root === void 0 ? void 0 : root.getAttribute('products')) || '[]');
 var authenticated = (root === null || root === void 0 ? void 0 : root.getAttribute('authenticated')) === '1';
+root === null || root === void 0 ? void 0 : root.removeAttribute('authenticated');
+var products = JSON.parse((root === null || root === void 0 ? void 0 : root.getAttribute('products')) || '[]');
+root === null || root === void 0 ? void 0 : root.removeAttribute('products');
 react_dom_1.render(react_1["default"].createElement(Index, {
   authenticated: authenticated,
   products: products

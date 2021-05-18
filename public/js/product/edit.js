@@ -602,8 +602,10 @@ var useStyles = react_jss_1.createUseStyles({
   }
 });
 var root = document.getElementById('root');
-var product = JSON.parse(root.getAttribute('product'));
 var authenticated = (root === null || root === void 0 ? void 0 : root.getAttribute('authenticated')) === '1';
+root === null || root === void 0 ? void 0 : root.removeAttribute('authenticated');
+var product = JSON.parse(root.getAttribute('product'));
+root === null || root === void 0 ? void 0 : root.removeAttribute('product');
 react_dom_1.render(react_1["default"].createElement(Edit, {
   authenticated: authenticated,
   product: product

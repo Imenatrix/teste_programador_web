@@ -46,5 +46,8 @@ const useStyles = createUseStyles({
 })
 
 const root = document.getElementById('root')
+
 const authenticated = root?.getAttribute('authenticated') === '1'
+root?.removeAttribute('authenticated')
+
 render(<Create authenticated={authenticated}/>, root)

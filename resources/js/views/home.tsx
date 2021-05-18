@@ -15,5 +15,8 @@ const Home : React.FC<Props> = (props) => {
 }
 
 const root = document.getElementById('root')
+
 const authenticated = root?.getAttribute('authenticated') === '1'
+root?.removeAttribute('authenticated')
+
 render(<Home authenticated={authenticated}/>, root)

@@ -40,6 +40,11 @@ const useStyles = createUseStyles({
 })
 
 const root = document.getElementById('root')
-const tokens : Array<Token> = JSON.parse(root?.getAttribute('tokens') || '[]')
+
 const authenticated = root?.getAttribute('authenticated') === '1'
+root?.removeAttribute('authenticated')
+
+const tokens : Array<Token> = JSON.parse(root?.getAttribute('tokens') || '[]')
+root?.removeAttribute('tokens')
+
 render(<Index tokens={tokens} authenticated={authenticated}/>, root)

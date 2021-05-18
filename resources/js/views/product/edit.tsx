@@ -48,6 +48,11 @@ const useStyles = createUseStyles({
 })
 
 const root = document.getElementById('root')
-const product : Product = JSON.parse(root!.getAttribute('product')!)
+
 const authenticated = root?.getAttribute('authenticated') === '1'
+root?.removeAttribute('authenticated')
+
+const product : Product = JSON.parse(root!.getAttribute('product')!)
+root?.removeAttribute('product')
+
 render(<Edit authenticated={authenticated} product={product}/>, root)

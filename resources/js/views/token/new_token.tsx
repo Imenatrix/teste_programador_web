@@ -58,7 +58,14 @@ const useStyles = createUseStyles({
 })
 
 const root = document.getElementById('root')
+
 const authenticated = root?.getAttribute('authenticated') === '1'
+root?.removeAttribute('authenticated')
+
 const name = root?.getAttribute('name') || ''
+root?.removeAttribute('name')
+
 const token = root?.getAttribute('token') || ''
+root?.removeAttribute('token')
+
 render(<NewToken name={name} token={token} authenticated={authenticated}/>, root)
