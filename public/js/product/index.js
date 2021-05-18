@@ -434,9 +434,8 @@ exports.default = ProductForm;
 var useStyles = react_jss_1.createUseStyles({
   container: {
     backgroundColor: 'coral',
-    padding: '1.5em',
-    borderRadius: 5,
-    width: 'fit-content'
+    padding: '0.5em',
+    borderRadius: 5
   },
   input: {
     border: 'none',
@@ -444,7 +443,8 @@ var useStyles = react_jss_1.createUseStyles({
     padding: '1em',
     borderRadius: 5,
     marginBottom: '1em',
-    width: '20em'
+    width: '100%',
+    boxSizing: 'border-box'
   },
   btnSubmit: {
     width: '100%',
@@ -559,6 +559,18 @@ var ProductList = function ProductList(props) {
     setSearch(newSearch);
   }
 
+  function onBtnNewPress() {
+    setShowForm(function (prev) {
+      return !prev;
+    });
+    setSelectedProduct(undefined);
+  }
+
+  function _onBtnEditPress(id) {
+    setShowForm(false);
+    setSelectedProduct(id);
+  }
+
   return react_1["default"].createElement("div", {
     className: styles.container
   }, react_1["default"].createElement("input", {
@@ -569,11 +581,7 @@ var ProductList = function ProductList(props) {
     placeholder: "Buscar"
   }), react_1["default"].createElement("button", {
     className: styles.btnNew,
-    onClick: function onClick() {
-      return setShowForm(function (prev) {
-        return !prev;
-      });
-    }
+    onClick: onBtnNewPress
   }, "Novo"), showForm && react_1["default"].createElement("div", {
     className: styles.newForm
   }, react_1["default"].createElement(ProductForm_1["default"], null)), react_1["default"].createElement("div", {
@@ -587,7 +595,7 @@ var ProductList = function ProductList(props) {
     })) : react_1["default"].createElement(ProductPod_1["default"], {
       key: product.id,
       onBtnEditPress: function onBtnEditPress() {
-        return setSelectedProduct(product.id);
+        return _onBtnEditPress(product.id);
       },
       product: product
     });
@@ -631,15 +639,11 @@ var useStyles = react_jss_1.createUseStyles({
     outline: 'none'
   },
   newForm: {
-    borderRadius: 5,
-    border: ['solid', 'white', 1],
-    width: 'fit-content',
-    backgroundColor: 'coral',
-    alignSelf: 'center',
-    marginBottom: '1em'
+    backgroundColor: 'white',
+    padding: '1em'
   },
   editForm: {
-    alignSelf: 'center'
+    padding: '0.5em'
   }
 });
 

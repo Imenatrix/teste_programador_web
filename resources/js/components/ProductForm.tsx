@@ -32,9 +32,8 @@ export default ProductForm
 const useStyles = createUseStyles({
     container : {
         backgroundColor : 'coral',
-        padding : '1.5em',
-        borderRadius : 5,
-        width : 'fit-content'
+        padding : '0.5em',
+        borderRadius : 5
     },
     input : {
         border : 'none',
@@ -42,7 +41,8 @@ const useStyles = createUseStyles({
         padding : '1em',
         borderRadius : 5,
         marginBottom : '1em',
-        width : '20em'
+        width : '100%',
+        boxSizing : 'border-box'
     },
     btnSubmit : {
         width : '100%',

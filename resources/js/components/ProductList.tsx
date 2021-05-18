@@ -30,10 +30,20 @@ const ProductList : React.FC<Props> = (props) => {
         setSearch(newSearch)
     }
 
+    function onBtnNewPress() {
+        setShowForm(prev => !prev)
+        setSelectedProduct(undefined)
+    }
+
+    function onBtnEditPress(id : number) {
+        setShowForm(false)
+        setSelectedProduct(id)
+    }
+
     return(
         <div className={styles.container}>
             <input value={search} onChange={handleOnSearchChange} className={styles.input} type="text" placeholder="Buscar"/>
-            <button className={styles.btnNew} onClick={() => setShowForm(prev => !prev)}>Novo</button>
+            <button className={styles.btnNew} onClick={onBtnNewPress}>Novo</button>
             {showForm &&
                 <div className={styles.newForm}>
                     <ProductForm/>
@@ -46,7 +56,7 @@ const ProductList : React.FC<Props> = (props) => {
                             <ProductForm product={product}/>
                         </div>
                     :
-                        <ProductPod key={product.id} onBtnEditPress={() => setSelectedProduct(product.id)} product={product}/>
+                        <ProductPod key={product.id} onBtnEditPress={() => onBtnEditPress(product.id)} product={product}/>
                 ))}
             </div>
         </div>
@@ -92,14 +102,10 @@ const useStyles = createUseStyles({
         outline : 'none'
     },
     newForm : {
-        borderRadius : 5,
-        border : ['solid', 'white', 1],
-        width : 'fit-content',
-        backgroundColor : 'coral',
-        alignSelf : 'center',
-        marginBottom : '1em'
+        backgroundColor : 'white',
+        padding : '1em'
     },
     editForm : {
-        alignSelf : 'center'
+        padding : '0.5em'
     }
 })
