@@ -434,9 +434,8 @@ exports.default = ProductForm;
 var useStyles = react_jss_1.createUseStyles({
   container: {
     backgroundColor: 'coral',
-    padding: '1.5em',
-    borderRadius: 5,
-    width: 'fit-content'
+    padding: '0.5em',
+    borderRadius: 5
   },
   input: {
     border: 'none',
@@ -444,7 +443,8 @@ var useStyles = react_jss_1.createUseStyles({
     padding: '1em',
     borderRadius: 5,
     marginBottom: '1em',
-    width: '20em'
+    width: '100%',
+    boxSizing: 'border-box'
   },
   btnSubmit: {
     width: '100%',
@@ -520,13 +520,16 @@ var useStyles = react_jss_1.createUseStyles({
     backgroundColor: 'coral',
     height: 50,
     alignItems: 'center',
-    paddingRight: '0.5em',
-    paddingLeft: '0.5em'
+    paddingLeft: '1em',
+    paddingRight: '1em'
   },
   link: {
     textDecoration: 'none',
-    color: 'ivory',
-    margin: '0.2em'
+    color: 'white',
+    margin: '0.5em',
+    '&:hover': {
+      textDecoration: 'underline'
+    }
   },
   spacer: {
     flex: 1
@@ -572,9 +575,11 @@ var Edit = function Edit(props) {
     authenticated: props.authenticated
   }), react_1["default"].createElement("div", {
     className: styles.content
+  }, react_1["default"].createElement("div", {
+    className: styles.form
   }, react_1["default"].createElement(ProductForm_1["default"], {
     product: props.product
-  })));
+  }))));
 };
 
 var useStyles = react_jss_1.createUseStyles({
@@ -589,6 +594,11 @@ var useStyles = react_jss_1.createUseStyles({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  form: {
+    flex: 1,
+    paddingRight: '30%',
+    paddingLeft: '30%'
   }
 });
 var root = document.getElementById('root');

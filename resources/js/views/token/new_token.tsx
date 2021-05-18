@@ -46,14 +46,15 @@ const useStyles = createUseStyles({
         alignItems : 'center'
     },
     message : {
-        backgroundColor : 'lightsalmon',
+        backgroundColor : 'white',
         borderRadius : 5,
-        padding : '1em'
+        padding : '1em',
+        boxShadow : [0, 0, 5, 'gray']
     },
     tokenInfo : {
         padding : '1em',
         borderRadius : 5,
-        border : ['solid', 'white', 1]
+        border : ['solid', 'lightgray', 1]
     }
 })
 

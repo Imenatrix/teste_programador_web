@@ -35,13 +35,16 @@ const useStyles = createUseStyles({
         backgroundColor : 'coral',
         height : 50,
         alignItems : 'center',
-        paddingRight : '0.5em',
-        paddingLeft : '0.5em'
+        paddingLeft : '1em',
+        paddingRight : '1em'
     },
     link : {
         textDecoration : 'none',
-        color : 'ivory',
-        margin : '0.2em'
+        color : 'white',
+        margin : '0.5em',
+        '&:hover' : {
+            textDecoration : 'underline'
+        }
     },
     spacer : {
         flex : 1

@@ -18,7 +18,9 @@ const Edit : React.FC<Props> = (props) => {
         <div className={styles.container}>
             <TopNav authenticated={props.authenticated}/>
             <div className={styles.content}>
-                <ProductForm product={props.product}/>
+                <div className={styles.form}>
+                    <ProductForm product={props.product}/>
+                </div>
             </div>
         </div>
     )
@@ -37,6 +39,11 @@ const useStyles = createUseStyles({
         display : 'flex',
         justifyContent : 'center',
         alignItems : 'center'
+    },
+    form : {
+        flex : 1,
+        paddingRight : '30%',
+        paddingLeft : '30%'
     }
 })
 
