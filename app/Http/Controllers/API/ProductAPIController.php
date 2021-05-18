@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\InsertProductRequest;
 use App\Models\Product;
-use Illuminate\Http\Request;
 
 class ProductAPIController extends Controller
 {
@@ -24,17 +24,9 @@ class ProductAPIController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(InsertProductRequest $request)
     {
-        $validated = $request->validate([
-            'name' => ['required'],
-            'price' => ['required', 'numeric'],
-            'description' => ['present']
-        ]);
-        if ($validated['description'] == null) {
-            $validated['description'] = '';
-        }
-        $product = Product::create($validated);
+        $product = Product::create($request->validated());
         return response()->json($product);
     }
 
@@ -56,17 +48,9 @@ class ProductAPIController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(InsertProductRequest $request, Product $product)
     {
-        $validated = $request->validate([
-            'name' => ['required'],
-            'price' => ['required', 'numeric'],
-            'description' => ['present']
-        ]);
-        if ($validated['description'] == null) {
-            $validated['description'] = '';
-        }
-        $product->update($validated);
+        $product->update($request->validated());
         return response()->json($product);
     }
 }
