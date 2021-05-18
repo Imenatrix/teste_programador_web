@@ -29,8 +29,11 @@ class ProductAPIController extends Controller
         $validated = $request->validate([
             'name' => ['required'],
             'price' => ['required', 'numeric'],
-            'description' => ['nullable']
+            'description' => ['present']
         ]);
+        if ($validated['description'] == null) {
+            $validated['description'] = '';
+        }
         $product = Product::create($validated);
         return response()->json($product);
     }
@@ -58,8 +61,11 @@ class ProductAPIController extends Controller
         $validated = $request->validate([
             'name' => ['required'],
             'price' => ['required', 'numeric'],
-            'description' => ['nullable']
+            'description' => ['present']
         ]);
+        if ($validated['description'] == null) {
+            $validated['description'] = '';
+        }
         $product->update($validated);
         return response()->json($product);
     }

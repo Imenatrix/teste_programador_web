@@ -38,7 +38,7 @@ class ProductController extends Controller
         $validated = $request->validate([
             'name' => ['required'],
             'price' => ['required', 'numeric'],
-            'description' => []
+            'description' => ['present']
         ]);
         if ($validated['description'] == null) {
             $validated['description'] = '';
@@ -81,7 +81,7 @@ class ProductController extends Controller
         $validated = $request->validate([
             'name' => ['required'],
             'price' => ['required', 'numeric'],
-            'description' => []
+            'description' => ['present']
         ]);
         if ($validated['description'] == null) {
             $validated['description'] = '';
