@@ -16,15 +16,30 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//Home
 Route::get('/', function () {
     return view('home');
 });
 
-Route::post('/user/authenticate', [UserController::class, 'authenticate']);
-Route::get('/login', [UserController::class, 'login'])->name('login');
+//Login
 Route::get('/logout', [UserController::class, 'logout']);
-Route::resource('/user', UserController::class);
+Route::get('/login', [UserController::class, 'login'])->name('login');
+Route::post('/user/authenticate', [UserController::class, 'authenticate']);
 
-Route::resource('/product', ProductController::class)->middleware('auth');
+//Usuario
+Route::resource('/user', UserController::class)->only([
+    'create',
+    'store'
+]);
 
-Route::resource('/api', TokenController::class)->middleware('auth');
+//Produto
+Route::resource('/product', ProductController::class)->except([
+    'show'
+])->middleware('auth');
+
+//Token
+Route::resource('/token', TokenController::class)->only([
+    'index',
+    'store',
+    'destroy'
+])->middleware('auth');

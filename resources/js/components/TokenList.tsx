@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { createUseStyles } from 'react-jss'
 import Token from '../interfaces/Token'
 import CSRF from './CSRF'
@@ -15,9 +15,13 @@ const TokenList : React.FC<Props> = (props) => {
 
     return(
         <div className={styles.container}>
-            <form className={styles.form} action='/api' method='post'>
+            <form className={styles.form} action='/token' method='post'>
                 <CSRF/>
-                <input className={styles.input} type="text" name="token_name" placeholder="Insira o nome do novo token"/>
+                <input
+                    type="text"
+                    name="token_name"
+                    className={styles.input}
+                    placeholder="Insira o nome do novo token"/>
                 <button className={styles.btnNew} type="submit">Novo</button>
             </form>
             <div className={styles.list}>

@@ -15,16 +15,19 @@ const ProductList : React.FC<Props> = (props) => {
     const products = props.products
 
     const [search, setSearch] = useState('')
-    const [selectedProduct, setSelectedProduct] = useState<number>();
     const [showForm, setShowForm] = useState(false)
+    const [selectedProduct, setSelectedProduct] = useState<number>()
     const [searchResult, setSearchResult] = useState<Array<Product>>(products)
 
+    // Fuzzy search
     function handleOnSearchChange(e : React.ChangeEvent<HTMLInputElement>) {
         const newSearch = e.target.value
+
         const fuse = new Fuse(products, {
             includeScore : true,
             keys : ['name', 'price', 'description']
         })
+
         const result = fuse.search(newSearch).map(result => result.item)
         setSearchResult(result.length != 0 ? result : products)
         setSearch(newSearch)
@@ -42,7 +45,12 @@ const ProductList : React.FC<Props> = (props) => {
 
     return(
         <div className={styles.container}>
-            <input value={search} onChange={handleOnSearchChange} className={styles.input} type="text" placeholder="Buscar"/>
+            <input
+                type="text"
+                value={search}
+                placeholder="Buscar"
+                className={styles.input}
+                onChange={handleOnSearchChange}/>
             <button className={styles.btnNew} onClick={onBtnNewPress}>Novo</button>
             {showForm &&
                 <div className={styles.newForm}>
@@ -56,7 +64,10 @@ const ProductList : React.FC<Props> = (props) => {
                             <ProductForm product={product}/>
                         </div>
                     :
-                        <ProductPod key={product.id} onBtnEditPress={() => onBtnEditPress(product.id)} product={product}/>
+                        <ProductPod
+                            key={product.id}
+                            product={product}
+                            onBtnEditPress={() => onBtnEditPress(product.id)}/>
                 ))}
             </div>
         </div>

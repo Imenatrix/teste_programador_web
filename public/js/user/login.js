@@ -404,7 +404,7 @@ var TopNav = function TopNav(props) {
     href: "/product"
   }, "Produtos"), react_1["default"].createElement("a", {
     className: styles.link,
-    href: "/api"
+    href: "/token"
   }, "API"), react_1["default"].createElement("div", {
     className: styles.spacer
   }), props.authenticated ? react_1["default"].createElement("a", {
@@ -483,27 +483,27 @@ var UserForm = function UserForm(props) {
       key: error
     }, error);
   })), react_1["default"].createElement("form", {
-    className: styles.form,
     method: "post",
+    className: styles.form,
     action: register ? '/user' : '/user/authenticate'
   }, react_1["default"].createElement(CSRF_1["default"], null), register && react_1["default"].createElement(react_1["default"].Fragment, null, react_1["default"].createElement("input", {
-    className: styles.input,
     type: "text",
     name: "name",
+    className: styles.input,
     placeholder: "Insira seu nome"
   }), " ", react_1["default"].createElement("br", null)), react_1["default"].createElement("input", {
-    className: styles.input,
     type: "text",
     name: "email",
+    className: styles.input,
     placeholder: "Insira seu e-mail"
   }), " ", react_1["default"].createElement("br", null), react_1["default"].createElement("input", {
-    className: styles.input,
     type: "password",
     name: "password",
+    className: styles.input,
     placeholder: "Insira sua senha"
   }), " ", react_1["default"].createElement("br", null), react_1["default"].createElement("input", {
-    className: styles.btnSubmit,
     type: "submit",
+    className: styles.btnSubmit,
     value: register ? 'Cadastre-se' : 'Entrar'
   })));
 };
@@ -606,7 +606,9 @@ var useStyles = react_jss_1.createUseStyles({
 });
 var root = document.getElementById('root');
 var authenticated = (root === null || root === void 0 ? void 0 : root.getAttribute('authenticated')) === '1';
+root === null || root === void 0 ? void 0 : root.removeAttribute('authenticated');
 var errorsObj = JSON.parse((root === null || root === void 0 ? void 0 : root.getAttribute('errors')) || '{}');
+root === null || root === void 0 ? void 0 : root.removeAttribute('errors');
 var errors = Object.values(errorsObj).reduce(function (prev, curr) {
   return prev.concat(curr);
 }, []);

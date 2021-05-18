@@ -398,34 +398,34 @@ var ProductForm = function ProductForm(props) {
   var styles = useStyles();
   var product = props.product;
   return react_1["default"].createElement("form", {
-    className: styles.container,
     method: "post",
+    className: styles.container,
     action: product ? '/product/' + product.id : '/product'
   }, react_1["default"].createElement(CSRF_1["default"], null), product && react_1["default"].createElement("input", {
     type: "hidden",
     name: "_method",
     value: "PATCH"
   }), react_1["default"].createElement("input", {
-    className: styles.input,
     type: "text",
     name: "name",
+    className: styles.input,
     defaultValue: product === null || product === void 0 ? void 0 : product.name,
     placeholder: "Insira nome do produto"
   }), " ", react_1["default"].createElement("br", null), react_1["default"].createElement("input", {
-    className: styles.input,
-    type: "number",
     step: "0.01",
     name: "price",
+    type: "number",
+    className: styles.input,
     defaultValue: product === null || product === void 0 ? void 0 : product.price,
     placeholder: "Insira o pre\xE7o do produto"
   }), " ", react_1["default"].createElement("br", null), react_1["default"].createElement("textarea", {
-    className: styles.input + ' ' + styles.txtDescription,
     name: "description",
     defaultValue: product === null || product === void 0 ? void 0 : product.description,
-    placeholder: "Insira descri\xE7\xE3o do produto"
+    placeholder: "Insira descri\xE7\xE3o do produto",
+    className: styles.input + ' ' + styles.txtDescription
   }), " ", react_1["default"].createElement("br", null), react_1["default"].createElement("input", {
-    className: styles.btnSubmit,
     type: "submit",
+    className: styles.btnSubmit,
     value: product ? 'Salvar' : 'Adicionar'
   }));
 };
@@ -534,17 +534,18 @@ var ProductList = function ProductList(props) {
       search = _a[0],
       setSearch = _a[1];
 
-  var _b = react_1.useState(),
-      selectedProduct = _b[0],
-      setSelectedProduct = _b[1];
+  var _b = react_1.useState(false),
+      showForm = _b[0],
+      setShowForm = _b[1];
 
-  var _c = react_1.useState(false),
-      showForm = _c[0],
-      setShowForm = _c[1];
+  var _c = react_1.useState(),
+      selectedProduct = _c[0],
+      setSelectedProduct = _c[1];
 
   var _d = react_1.useState(products),
       searchResult = _d[0],
-      setSearchResult = _d[1];
+      setSearchResult = _d[1]; // Fuzzy search
+
 
   function handleOnSearchChange(e) {
     var newSearch = e.target.value;
@@ -574,11 +575,11 @@ var ProductList = function ProductList(props) {
   return react_1["default"].createElement("div", {
     className: styles.container
   }, react_1["default"].createElement("input", {
-    value: search,
-    onChange: handleOnSearchChange,
-    className: styles.input,
     type: "text",
-    placeholder: "Buscar"
+    value: search,
+    placeholder: "Buscar",
+    className: styles.input,
+    onChange: handleOnSearchChange
   }), react_1["default"].createElement("button", {
     className: styles.btnNew,
     onClick: onBtnNewPress
@@ -594,10 +595,10 @@ var ProductList = function ProductList(props) {
       product: product
     })) : react_1["default"].createElement(ProductPod_1["default"], {
       key: product.id,
+      product: product,
       onBtnEditPress: function onBtnEditPress() {
         return _onBtnEditPress(product.id);
-      },
-      product: product
+      }
     });
   })));
 };
@@ -784,7 +785,7 @@ var TopNav = function TopNav(props) {
     href: "/product"
   }, "Produtos"), react_1["default"].createElement("a", {
     className: styles.link,
-    href: "/api"
+    href: "/token"
   }, "API"), react_1["default"].createElement("div", {
     className: styles.spacer
   }), props.authenticated ? react_1["default"].createElement("a", {
@@ -878,8 +879,10 @@ var useStyles = react_jss_1.createUseStyles({
   }
 });
 var root = document.getElementById('root');
-var products = JSON.parse((root === null || root === void 0 ? void 0 : root.getAttribute('products')) || '[]');
 var authenticated = (root === null || root === void 0 ? void 0 : root.getAttribute('authenticated')) === '1';
+root === null || root === void 0 ? void 0 : root.removeAttribute('authenticated');
+var products = JSON.parse((root === null || root === void 0 ? void 0 : root.getAttribute('products')) || '[]');
+root === null || root === void 0 ? void 0 : root.removeAttribute('products');
 react_dom_1.render(react_1["default"].createElement(Index, {
   authenticated: authenticated,
   products: products

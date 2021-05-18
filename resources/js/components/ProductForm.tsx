@@ -13,15 +13,36 @@ const ProductForm : React.FC<Props> = (props) => {
     const product = props.product
 
     return (
-        <form className={styles.container} method="post" action={product ? '/product/' + product.id : '/product'}>
+        <form
+            method="post"
+            className={styles.container}
+            action={product ? '/product/' + product.id : '/product'}>
             <CSRF/>
             {product &&
                 <input type="hidden" name="_method" value="PATCH"/>
             }
-            <input className={styles.input} type="text" name="name" defaultValue={product?.name} placeholder="Insira nome do produto"/> <br/>
-            <input className={styles.input} type="number" step="0.01" name="price" defaultValue={product?.price} placeholder="Insira o preço do produto"/> <br/>
-            <textarea className={styles.input + ' ' + styles.txtDescription} name="description" defaultValue={product?.description} placeholder="Insira descrição do produto"/> <br/>
-            <input className={styles.btnSubmit} type="submit" value={product ? 'Salvar' : 'Adicionar'}/>
+            <input
+                type="text"
+                name="name"
+                className={styles.input}
+                defaultValue={product?.name}
+                placeholder="Insira nome do produto"/> <br/>
+            <input
+                step="0.01"
+                name="price"
+                type="number"
+                className={styles.input}
+                defaultValue={product?.price}
+                placeholder="Insira o preço do produto"/> <br/>
+            <textarea
+                name="description"
+                defaultValue={product?.description}
+                placeholder="Insira descrição do produto"
+                className={styles.input + ' ' + styles.txtDescription}/> <br/>
+            <input
+                type="submit"
+                className={styles.btnSubmit}
+                value={product ? 'Salvar' : 'Adicionar'}/>
         </form>
     )
 
