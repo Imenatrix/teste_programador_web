@@ -16,22 +16,28 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//Home
 Route::get('/', function () {
     return view('home');
 });
 
-Route::post('/user/authenticate', [UserController::class, 'authenticate']);
-Route::get('/login', [UserController::class, 'login'])->name('login');
+//Login
 Route::get('/logout', [UserController::class, 'logout']);
+Route::get('/login', [UserController::class, 'login'])->name('login');
+Route::post('/user/authenticate', [UserController::class, 'authenticate']);
+
+//Usuario
 Route::resource('/user', UserController::class)->only([
     'create',
     'store'
 ]);
 
+//Produto
 Route::resource('/product', ProductController::class)->except([
     'show'
 ])->middleware('auth');
 
+//Token
 Route::resource('/token', TokenController::class)->only([
     'index',
     'store',
