@@ -24,4 +24,4 @@ Route::get('/login', [UserController::class, 'login'])->name('login');
 Route::get('/logout', [UserController::class, 'logout']);
 Route::resource('/user', UserController::class);
 
-Route::resource('/product', ProductController::class);
+Route::resource('/product', ProductController::class)->middleware('auth');
