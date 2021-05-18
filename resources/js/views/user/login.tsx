@@ -6,17 +6,20 @@ import TopNav from '../../components/TopNav'
 
 interface Props {
     authenticated : boolean
+    errors : Array<string>
 }
 
 const Login : React.FC<Props> = (props) => {
 
     const styles = useStyles()
 
+    console.log(props.errors)
+
     return (
         <div className={styles.container}>
             <TopNav authenticated={props.authenticated}/>
             <div className={styles.content}>
-                <UserForm/>
+                <UserForm errors={props.errors}/>
             </div>
         </div>
     )
@@ -40,4 +43,8 @@ const useStyles = createUseStyles({
 
 const root = document.getElementById('root')
 const authenticated = root?.getAttribute('authenticated') === '1'
-render(<Login authenticated={authenticated}/>, root)
+const errorsObj : {
+    ['key'] : Array<string>
+} = JSON.parse(root?.getAttribute('errors') || '{}')
+const errors = Object.values(errorsObj).reduce((prev, curr) => prev.concat(curr), [])
+render(<Login errors={errors} authenticated={authenticated}/>, root)

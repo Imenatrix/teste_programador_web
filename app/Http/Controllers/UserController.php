@@ -109,8 +109,12 @@ class UserController extends Controller
             'email' => ['required', 'email'],
             'password' => ['required']
         ]);
-        Auth::attempt($validated);
-        $request->session()->regenerate();
-        return redirect()->intended();
+        if (Auth::attempt($validated)) {
+            $request->session()->regenerate();
+            return redirect()->intended();
+        }
+        else {
+            return view('user.login', ['errors' => collect(['login' => 'E-mail ou senha incorretos.'])]);
+        }
     }
 }

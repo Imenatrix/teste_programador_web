@@ -6,6 +6,7 @@ import { createUseStyles } from 'react-jss'
 
 interface Props {
     authenticated : boolean
+    errors : Array<string>
 }
 
 const Create : React.FC<Props> = (props) => {
@@ -16,7 +17,7 @@ const Create : React.FC<Props> = (props) => {
         <div className={styles.container}>
             <TopNav authenticated={props.authenticated}/>
             <div className={styles.content}>
-                <UserForm register/>
+                <UserForm errors={props.errors} register/>
             </div>
         </div>
     )
@@ -40,4 +41,8 @@ const useStyles = createUseStyles({
 
 const root = document.getElementById('root')
 const authenticated = root?.getAttribute('authenticated') === '1'
-render(<Create authenticated={authenticated}/>, root)
+const errorsObj : {
+    ['key'] : Array<string>
+} = JSON.parse(root?.getAttribute('errors') || '{}')
+const errors = Object.values(errorsObj).reduce((prev, curr) => prev.concat(curr), [])
+render(<Create errors={errors} authenticated={authenticated}/>, root)
