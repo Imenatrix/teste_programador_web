@@ -1,5 +1,4 @@
 import React from 'react'
-import ProductForm from '../../components/ProductForm'
 import { render } from 'react-dom'
 import { createUseStyles } from 'react-jss'
 import TopNav from '../../components/TopNav'

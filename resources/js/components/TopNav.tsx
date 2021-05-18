@@ -1,6 +1,5 @@
 import React from 'react'
 import { createUseStyles } from 'react-jss'
-import { render } from 'react-dom'
 
 interface Props {
     authenticated : boolean

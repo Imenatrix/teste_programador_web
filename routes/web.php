@@ -23,8 +23,17 @@ Route::get('/', function () {
 Route::post('/user/authenticate', [UserController::class, 'authenticate']);
 Route::get('/login', [UserController::class, 'login'])->name('login');
 Route::get('/logout', [UserController::class, 'logout']);
-Route::resource('/user', UserController::class);
+Route::resource('/user', UserController::class)->only([
+    'create',
+    'store'
+]);
 
-Route::resource('/product', ProductController::class)->middleware('auth');
+Route::resource('/product', ProductController::class)->except([
+    'show'
+])->middleware('auth');
 
-Route::resource('/token', TokenController::class)->middleware('auth');
+Route::resource('/token', TokenController::class)->only([
+    'index',
+    'store',
+    'destroy'
+])->middleware('auth');
