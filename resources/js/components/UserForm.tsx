@@ -23,14 +23,32 @@ const UserForm : React.FC<Props> = (props) => {
                     ))}
                 </ul>
             }
-            <form className={styles.form} method="post" action={register ? '/user' : '/user/authenticate'}>
+            <form
+                method="post"
+                className={styles.form}
+                action={register ? '/user' : '/user/authenticate'}>
                 <CSRF/>
                 {register && <>
-                    <input className={styles.input} type="text" name="name" placeholder="Insira seu nome"/> <br/>
+                    <input
+                        type="text"
+                        name="name"
+                        className={styles.input}
+                        placeholder="Insira seu nome"/> <br/>
                 </> }
-                <input className={styles.input} type="text" name="email" placeholder="Insira seu e-mail"/> <br/>
-                <input className={styles.input} type="password" name="password" placeholder="Insira sua senha"/> <br/>
-                <input className={styles.btnSubmit} type="submit" value={register ? 'Cadastre-se' : 'Entrar'}/>
+                <input
+                    type="text"
+                    name="email"
+                    className={styles.input}
+                    placeholder="Insira seu e-mail"/> <br/>
+                <input
+                    type="password"
+                    name="password"
+                    className={styles.input}
+                    placeholder="Insira sua senha"/> <br/>
+                <input
+                    type="submit"
+                    className={styles.btnSubmit}
+                    value={register ? 'Cadastre-se' : 'Entrar'}/>
             </form>
         </div>
     )

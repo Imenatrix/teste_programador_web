@@ -17,7 +17,11 @@ const TokenList : React.FC<Props> = (props) => {
         <div className={styles.container}>
             <form className={styles.form} action='/token' method='post'>
                 <CSRF/>
-                <input className={styles.input} type="text" name="token_name" placeholder="Insira o nome do novo token"/>
+                <input
+                    type="text"
+                    name="token_name"
+                    className={styles.input}
+                    placeholder="Insira o nome do novo token"/>
                 <button className={styles.btnNew} type="submit">Novo</button>
             </form>
             <div className={styles.list}>

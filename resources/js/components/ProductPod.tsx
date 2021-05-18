@@ -17,8 +17,21 @@ const ProductPod : React.FC<Props> = (props) => {
     return (
         <div className={styles.container}>
             <div>
-                <div className={styles.txtName}>{(product.name.length <= 25 ? product.name : product.name.substring(0, 25) + '...') + ' - R$' + product.price.toFixed(2)}</div>
-                <div  className={styles.txtDescription}>{product.description.length <= 50 ? product.description : product.description.substring(0, 50) + '...'}</div>
+                <div className={styles.txtName}>
+                    {(product.name.length <= 25 ?
+                        product.name
+                    :
+                        product.name.substring(0, 25) + '...') +
+                        ' - R$' +
+                        product.price.toFixed(2)
+                    }
+                </div>
+                <div className={styles.txtDescription}>
+                    {product.description.length <= 50 ?
+                        product.description
+                    :
+                        product.description.substring(0, 50) + '...'}
+                </div>
             </div>
             <div className={styles.btnGroup}>
                 <button className={styles.btn} onClick={props.onBtnEditPress}>

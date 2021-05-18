@@ -406,9 +406,9 @@ var TokenList = function TokenList(props) {
     action: '/token',
     method: 'post'
   }, react_1["default"].createElement(CSRF_1["default"], null), react_1["default"].createElement("input", {
-    className: styles.input,
     type: "text",
     name: "token_name",
+    className: styles.input,
     placeholder: "Insira o nome do novo token"
   }), react_1["default"].createElement("button", {
     className: styles.btnNew,

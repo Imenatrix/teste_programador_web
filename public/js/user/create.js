@@ -483,27 +483,27 @@ var UserForm = function UserForm(props) {
       key: error
     }, error);
   })), react_1["default"].createElement("form", {
-    className: styles.form,
     method: "post",
+    className: styles.form,
     action: register ? '/user' : '/user/authenticate'
   }, react_1["default"].createElement(CSRF_1["default"], null), register && react_1["default"].createElement(react_1["default"].Fragment, null, react_1["default"].createElement("input", {
-    className: styles.input,
     type: "text",
     name: "name",
+    className: styles.input,
     placeholder: "Insira seu nome"
   }), " ", react_1["default"].createElement("br", null)), react_1["default"].createElement("input", {
-    className: styles.input,
     type: "text",
     name: "email",
+    className: styles.input,
     placeholder: "Insira seu e-mail"
   }), " ", react_1["default"].createElement("br", null), react_1["default"].createElement("input", {
-    className: styles.input,
     type: "password",
     name: "password",
+    className: styles.input,
     placeholder: "Insira sua senha"
   }), " ", react_1["default"].createElement("br", null), react_1["default"].createElement("input", {
-    className: styles.btnSubmit,
     type: "submit",
+    className: styles.btnSubmit,
     value: register ? 'Cadastre-se' : 'Entrar'
   })));
 };

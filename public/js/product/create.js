@@ -398,34 +398,34 @@ var ProductForm = function ProductForm(props) {
   var styles = useStyles();
   var product = props.product;
   return react_1["default"].createElement("form", {
-    className: styles.container,
     method: "post",
+    className: styles.container,
     action: product ? '/product/' + product.id : '/product'
   }, react_1["default"].createElement(CSRF_1["default"], null), product && react_1["default"].createElement("input", {
     type: "hidden",
     name: "_method",
     value: "PATCH"
   }), react_1["default"].createElement("input", {
-    className: styles.input,
     type: "text",
     name: "name",
+    className: styles.input,
     defaultValue: product === null || product === void 0 ? void 0 : product.name,
     placeholder: "Insira nome do produto"
   }), " ", react_1["default"].createElement("br", null), react_1["default"].createElement("input", {
-    className: styles.input,
-    type: "number",
     step: "0.01",
     name: "price",
+    type: "number",
+    className: styles.input,
     defaultValue: product === null || product === void 0 ? void 0 : product.price,
     placeholder: "Insira o pre\xE7o do produto"
   }), " ", react_1["default"].createElement("br", null), react_1["default"].createElement("textarea", {
-    className: styles.input + ' ' + styles.txtDescription,
     name: "description",
     defaultValue: product === null || product === void 0 ? void 0 : product.description,
-    placeholder: "Insira descri\xE7\xE3o do produto"
+    placeholder: "Insira descri\xE7\xE3o do produto",
+    className: styles.input + ' ' + styles.txtDescription
   }), " ", react_1["default"].createElement("br", null), react_1["default"].createElement("input", {
-    className: styles.btnSubmit,
     type: "submit",
+    className: styles.btnSubmit,
     value: product ? 'Salvar' : 'Adicionar'
   }));
 };
