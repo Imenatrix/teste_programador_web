@@ -472,8 +472,12 @@ var react_jss_1 = __webpack_require__(/*! react-jss */ "./node_modules/react-jss
 var UserForm = function UserForm(props) {
   var styles = useStyles();
   var register = props.register;
-  return react_1["default"].createElement("form", {
-    className: styles.container,
+  return react_1["default"].createElement("div", {
+    className: styles.container
+  }, react_1["default"].createElement("h3", {
+    className: styles.header
+  }, register ? 'Cadastro' : 'Login'), react_1["default"].createElement("form", {
+    className: styles.form,
     method: "post",
     action: register ? '/user' : '/user/authenticate'
   }, react_1["default"].createElement(CSRF_1["default"], null), register && react_1["default"].createElement(react_1["default"].Fragment, null, react_1["default"].createElement("input", {
@@ -494,19 +498,27 @@ var UserForm = function UserForm(props) {
   }), " ", react_1["default"].createElement("br", null), react_1["default"].createElement("input", {
     className: styles.btnSubmit,
     type: "submit",
-    value: register ? 'Registar' : 'Login'
-  }));
+    value: register ? 'Cadastre-se' : 'Entrar'
+  })));
 };
 
 exports.default = UserForm;
 var useStyles = react_jss_1.createUseStyles({
   container: {
     backgroundColor: 'coral',
-    padding: '1.5em',
-    borderRadius: 5
+    borderRadius: 5,
+    boxShadow: [0, 0, 5, 'gray']
+  },
+  header: {
+    color: 'white',
+    textAlign: 'center'
+  },
+  form: {
+    backgroundColor: 'white',
+    padding: '0.5em'
   },
   input: {
-    border: 'none',
+    border: ['solid', 'lightgray', 1],
     outline: 'none',
     padding: '1em',
     borderRadius: 5,
@@ -517,7 +529,7 @@ var useStyles = react_jss_1.createUseStyles({
     width: '100%',
     padding: '1em',
     borderRadius: 5,
-    backgroundColor: 'lightsalmon',
+    backgroundColor: 'coral',
     border: 'none',
     color: 'white',
     fontWeight: 'bold'
