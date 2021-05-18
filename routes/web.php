@@ -27,4 +27,4 @@ Route::resource('/user', UserController::class);
 
 Route::resource('/product', ProductController::class)->middleware('auth');
 
-Route::resource('/api', TokenController::class);
+Route::resource('/api', TokenController::class)->middleware('auth');
