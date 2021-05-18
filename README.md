@@ -7,9 +7,9 @@ Authorization ao realizar uma requisição, usando seu token de acesso pessoal:
 ```
 Authorization: Bearer SEU_TOKEN_DE_ACESSO
 ```
-Para conseguir um token basta criar um na seção tokens. Você deve dar um nome
-ao seu token para identifica-lo. Ao criar um token, ele será mostrado apenas
-uma vez, ao sair da pagina onde seu token é mostrado, não há como recupera-lo.
+Para conseguir um token basta criar um na seção API. Você deve dar um nome
+ao seu token para identificá-lo. Ao criar um token, ele será mostrado apenas
+uma vez, ao sair da página onde seu token é mostrado, não há como recuperá-lo.
 Você pode criar quantos tokens quiser.
 
 #### GET - /api/product
@@ -79,7 +79,7 @@ corpo da requisição e então retorna o recurso atualizado.
 
 - Exemplo de URL:
 ```
-/api/product/1
+/api/product/3
 ```
 
 - Exemplo de corpo:
