@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\InsertProductRequest;
 use App\Models\Product;
-use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
@@ -33,17 +33,9 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(InsertProductRequest $request)
     {
-        $validated = $request->validate([
-            'name' => ['required'],
-            'price' => ['required', 'numeric'],
-            'description' => ['present']
-        ]);
-        if ($validated['description'] == null) {
-            $validated['description'] = '';
-        }
-        Product::create($validated);
+        Product::create($request->validated());
         return redirect('/product');
     }
 
@@ -65,17 +57,9 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(InsertProductRequest $request, Product $product)
     {
-        $validated = $request->validate([
-            'name' => ['required'],
-            'price' => ['required', 'numeric'],
-            'description' => ['present']
-        ]);
-        if ($validated['description'] == null) {
-            $validated['description'] = '';
-        }
-        $product->update($validated);
+        $product->update($request->validated());
         return redirect('/product');
     }
 
