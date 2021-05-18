@@ -678,7 +678,7 @@ var ProductPod = function ProductPod(props) {
     className: styles.container
   }, react_1["default"].createElement("div", null, react_1["default"].createElement("div", {
     className: styles.txtName
-  }, product.name + ' - R$' + product.price.toFixed(2)), react_1["default"].createElement("div", {
+  }, (product.name.length <= 25 ? product.name : product.name.substring(0, 25) + '...') + ' - R$' + product.price.toFixed(2)), react_1["default"].createElement("div", {
     className: styles.txtDescription
   }, product.description.length <= 50 ? product.description : product.description.substring(0, 50) + '...')), react_1["default"].createElement("div", {
     className: styles.btnGroup
