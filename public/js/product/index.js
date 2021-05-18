@@ -784,7 +784,7 @@ var TopNav = function TopNav(props) {
     href: "/product"
   }, "Produtos"), react_1["default"].createElement("a", {
     className: styles.link,
-    href: "/api"
+    href: "/token"
   }, "API"), react_1["default"].createElement("div", {
     className: styles.spacer
   }), props.authenticated ? react_1["default"].createElement("a", {

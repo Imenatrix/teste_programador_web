@@ -91,6 +91,6 @@ class TokenController extends Controller
     public function destroy(Request $request, $id)
     {
         $request->user()->tokens()->where('id', $id)->delete();
-        return redirect('/api');
+        return redirect('/token');
     }
 }

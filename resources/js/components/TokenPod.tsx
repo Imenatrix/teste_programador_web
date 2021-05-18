@@ -18,7 +18,7 @@ const TokenPod : React.FC<Props> = (props) => {
             <div>
                 <div className={styles.txtName}>{token.name}</div>
             </div>
-            <form method="post" action={'/api/' + token.id}>
+            <form method="post" action={'/token/' + token.id}>
                 <CSRF/>
                 <input type="hidden" name="_method" value="DELETE"/>
                 <button className={styles.btn} type="submit">

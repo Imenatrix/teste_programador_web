@@ -403,7 +403,7 @@ var TokenList = function TokenList(props) {
     className: styles.container
   }, react_1["default"].createElement("form", {
     className: styles.form,
-    action: '/api',
+    action: '/token',
     method: 'post'
   }, react_1["default"].createElement(CSRF_1["default"], null), react_1["default"].createElement("input", {
     className: styles.input,
@@ -503,7 +503,7 @@ var TokenPod = function TokenPod(props) {
     className: styles.txtName
   }, token.name)), react_1["default"].createElement("form", {
     method: "post",
-    action: '/api/' + token.id
+    action: '/token/' + token.id
   }, react_1["default"].createElement(CSRF_1["default"], null), react_1["default"].createElement("input", {
     type: "hidden",
     name: "_method",
@@ -589,7 +589,7 @@ var TopNav = function TopNav(props) {
     href: "/product"
   }, "Produtos"), react_1["default"].createElement("a", {
     className: styles.link,
-    href: "/api"
+    href: "/token"
   }, "API"), react_1["default"].createElement("div", {
     className: styles.spacer
   }), props.authenticated ? react_1["default"].createElement("a", {

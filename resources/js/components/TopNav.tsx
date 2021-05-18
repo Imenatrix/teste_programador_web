@@ -14,7 +14,7 @@ const TopNav : React.FC<Props> = (props) => {
         <nav className={styles.container}>
             <a className={styles.link} href="/">Home</a>
             <a className={styles.link} href="/product">Produtos</a>
-            <a className={styles.link} href="/api">API</a>
+            <a className={styles.link} href="/token">API</a>
             <div className={styles.spacer}/>
             {props.authenticated ?
                 <a className={styles.link} href="/logout">Logout</a>
