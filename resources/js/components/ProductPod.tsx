@@ -41,28 +41,28 @@ export default ProductPod
 
 const useStyles = createUseStyles({
     container : {
-        backgroundColor : 'coral',
+        backgroundColor : 'white',
         borderRadius : 5,
         padding : '0.3em',
         paddingLeft : '1em',
         margin : '0.5em',
         display : 'flex',
         justifyContent : 'space-between',
-        alignItems : 'center'
+        alignItems : 'center',
+        border : ['solid', 'lightgray', 1],
+        '&:hover' : {
+            boxShadow : [0, 0, 5, 'lightgray']
+        }
     },
     txtName : {
         marginBottom : '0.5em',
-        marginTop : '0.5em',
-        color : 'white',
-        fontWeight : 'bold'
+        marginTop : '0.5em'
     },
     txtDescription : {
-        fontSize : 10,
-        color : 'white',
-        fontWeight : 'bold'
+        fontSize : 10
     },
     btn : {
-        backgroundColor : '#ff4e0d',
+        backgroundColor : 'coral',
         color : 'white',
         fontWeight : 'bold',
         border : 'none',

@@ -38,7 +38,8 @@ const useStyles = createUseStyles({
         flexDirection : 'column',
         backgroundColor : 'coral',
         borderRadius : 5,
-        flex : 1
+        flex : 1,
+        boxShadow : [0, 0, 5, 'gray']
     },
     input : {
         flex : 1,
@@ -55,7 +56,7 @@ const useStyles = createUseStyles({
     list : {
         display : 'flex',
         flexDirection : 'column',
-        backgroundColor : 'lightsalmon',
+        backgroundColor : 'white',
         flex : 1,
         padding : '0.5em'
     },

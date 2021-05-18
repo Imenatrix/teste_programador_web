@@ -390,13 +390,16 @@ var useStyles = react_jss_1.createUseStyles({
     backgroundColor: 'coral',
     height: 50,
     alignItems: 'center',
-    paddingRight: '0.5em',
-    paddingLeft: '0.5em'
+    paddingLeft: '1em',
+    paddingRight: '1em'
   },
   link: {
     textDecoration: 'none',
-    color: 'ivory',
-    margin: '0.2em'
+    color: 'white',
+    margin: '0.5em',
+    '&:hover': {
+      textDecoration: 'underline'
+    }
   },
   spacer: {
     flex: 1
@@ -465,14 +468,15 @@ var useStyles = react_jss_1.createUseStyles({
     alignItems: 'center'
   },
   message: {
-    backgroundColor: 'lightsalmon',
+    backgroundColor: 'white',
     borderRadius: 5,
-    padding: '1em'
+    padding: '1em',
+    boxShadow: [0, 0, 5, 'gray']
   },
   tokenInfo: {
     padding: '1em',
     borderRadius: 5,
-    border: ['solid', 'white', 1]
+    border: ['solid', 'lightgray', 1]
   }
 });
 var root = document.getElementById('root');

@@ -2,6 +2,7 @@ import React from 'react'
 import { createUseStyles } from 'react-jss'
 import CSRF from './CSRF'
 import Token from '../interfaces/Token'
+import { MdClear } from 'react-icons/md'
 
 interface Props {
     token : Token
@@ -20,7 +21,9 @@ const TokenPod : React.FC<Props> = (props) => {
             <form method="post" action={'/api/' + token.id}>
                 <CSRF/>
                 <input type="hidden" name="_method" value="DELETE"/>
-                <input className={styles.btn} type="submit" value="D"/>
+                <button className={styles.btn} type="submit">
+                    <MdClear/>
+                </button>
             </form>
         </div>
     )
@@ -31,23 +34,25 @@ export default TokenPod
 
 const useStyles = createUseStyles({
     container : {
-        backgroundColor : 'coral',
+        backgroundColor : 'white',
         borderRadius : 5,
         padding : '0.3em',
         paddingLeft : '1em',
         margin : '0.5em',
         display : 'flex',
         justifyContent : 'space-between',
-        alignItems : 'center'
+        alignItems : 'center',
+        border : ['solid', 'lightgray', 1],
+        '&:hover' : {
+            boxShadow : [0, 0, 5, 'lightgray']
+        }
     },
     txtName : {
         marginBottom : '0.5em',
-        marginTop : '0.5em',
-        color : 'white',
-        fontWeight : 'bold'
+        marginTop : '0.5em'
     },
     btn : {
-        backgroundColor : '#ff4e0d',
+        backgroundColor : 'coral',
         color : 'white',
         fontWeight : 'bold',
         border : 'none',
@@ -56,6 +61,10 @@ const useStyles = createUseStyles({
         height : 40,
         width : 40,
         borderRadius : 20,
-        marginRight : '0.7em'
+        marginRight : '0.7em',
+        display : 'flex',
+        justifyContent : 'center',
+        alignItems : 'center',
+        fontSize : 20
     }
 })

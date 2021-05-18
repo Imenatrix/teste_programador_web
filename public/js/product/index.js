@@ -601,7 +601,8 @@ var useStyles = react_jss_1.createUseStyles({
     flexDirection: 'column',
     backgroundColor: 'coral',
     borderRadius: 5,
-    flex: 1
+    flex: 1,
+    boxShadow: [0, 0, 5, 'gray']
   },
   input: {
     border: 'none',
@@ -613,7 +614,7 @@ var useStyles = react_jss_1.createUseStyles({
   list: {
     display: 'flex',
     flexDirection: 'column',
-    backgroundColor: 'lightsalmon',
+    backgroundColor: 'white',
     flex: 1,
     padding: '0.5em'
   },
@@ -701,28 +702,28 @@ var ProductPod = function ProductPod(props) {
 exports.default = ProductPod;
 var useStyles = react_jss_1.createUseStyles({
   container: {
-    backgroundColor: 'coral',
+    backgroundColor: 'white',
     borderRadius: 5,
     padding: '0.3em',
     paddingLeft: '1em',
     margin: '0.5em',
     display: 'flex',
     justifyContent: 'space-between',
-    alignItems: 'center'
+    alignItems: 'center',
+    border: ['solid', 'lightgray', 1],
+    '&:hover': {
+      boxShadow: [0, 0, 5, 'lightgray']
+    }
   },
   txtName: {
     marginBottom: '0.5em',
-    marginTop: '0.5em',
-    color: 'white',
-    fontWeight: 'bold'
+    marginTop: '0.5em'
   },
   txtDescription: {
-    fontSize: 10,
-    color: 'white',
-    fontWeight: 'bold'
+    fontSize: 10
   },
   btn: {
-    backgroundColor: '#ff4e0d',
+    backgroundColor: 'coral',
     color: 'white',
     fontWeight: 'bold',
     border: 'none',
@@ -801,13 +802,16 @@ var useStyles = react_jss_1.createUseStyles({
     backgroundColor: 'coral',
     height: 50,
     alignItems: 'center',
-    paddingRight: '0.5em',
-    paddingLeft: '0.5em'
+    paddingLeft: '1em',
+    paddingRight: '1em'
   },
   link: {
     textDecoration: 'none',
-    color: 'ivory',
-    margin: '0.2em'
+    color: 'white',
+    margin: '0.5em',
+    '&:hover': {
+      textDecoration: 'underline'
+    }
   },
   spacer: {
     flex: 1
