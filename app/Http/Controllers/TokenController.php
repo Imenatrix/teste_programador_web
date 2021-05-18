@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class TokenController extends Controller
 {
@@ -35,7 +36,15 @@ class TokenController extends Controller
      */
     public function store(Request $request)
     {
-        $token = $request->user()->createToken($request->token_name);
+        $validated = $request->validate([
+            'token_name' => [
+                'required',
+                Rule::unique('personal_access_tokens', 'name')->where(function ($query) {
+                    return $query->where('tokenable_id', Auth::user()->id);
+                })
+            ]
+        ]);
+        $token = $request->user()->createToken($validated['token_name']);
         return view('token.new_token', ['name' => $token->accessToken->name, 'token' => $token->plainTextToken]);
     }
 
