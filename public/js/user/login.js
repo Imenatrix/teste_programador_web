@@ -472,11 +472,17 @@ var react_jss_1 = __webpack_require__(/*! react-jss */ "./node_modules/react-jss
 var UserForm = function UserForm(props) {
   var styles = useStyles();
   var register = props.register;
+  var errors = props.errors;
   return react_1["default"].createElement("div", {
     className: styles.container
   }, react_1["default"].createElement("h3", {
     className: styles.header
-  }, register ? 'Cadastro' : 'Login'), react_1["default"].createElement("form", {
+  }, register ? 'Cadastro' : 'Login'), errors.length > 0 && react_1["default"].createElement("ul", null, errors.map(function (error) {
+    return react_1["default"].createElement("li", {
+      className: styles.error,
+      key: error
+    }, error);
+  })), react_1["default"].createElement("form", {
     className: styles.form,
     method: "post",
     action: register ? '/user' : '/user/authenticate'
@@ -533,6 +539,9 @@ var useStyles = react_jss_1.createUseStyles({
     border: 'none',
     color: 'white',
     fontWeight: 'bold'
+  },
+  error: {
+    color: 'white'
   }
 });
 
@@ -569,13 +578,16 @@ var TopNav_1 = __importDefault(__webpack_require__(/*! ../../components/TopNav *
 
 var Login = function Login(props) {
   var styles = useStyles();
+  console.log(props.errors);
   return react_1["default"].createElement("div", {
     className: styles.container
   }, react_1["default"].createElement(TopNav_1["default"], {
     authenticated: props.authenticated
   }), react_1["default"].createElement("div", {
     className: styles.content
-  }, react_1["default"].createElement(UserForm_1["default"], null)));
+  }, react_1["default"].createElement(UserForm_1["default"], {
+    errors: props.errors
+  })));
 };
 
 var useStyles = react_jss_1.createUseStyles({
@@ -594,7 +606,12 @@ var useStyles = react_jss_1.createUseStyles({
 });
 var root = document.getElementById('root');
 var authenticated = (root === null || root === void 0 ? void 0 : root.getAttribute('authenticated')) === '1';
+var errorsObj = JSON.parse((root === null || root === void 0 ? void 0 : root.getAttribute('errors')) || '{}');
+var errors = Object.values(errorsObj).reduce(function (prev, curr) {
+  return prev.concat(curr);
+}, []);
 react_dom_1.render(react_1["default"].createElement(Login, {
+  errors: errors,
   authenticated: authenticated
 }), root);
 

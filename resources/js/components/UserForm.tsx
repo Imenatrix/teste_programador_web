@@ -4,16 +4,25 @@ import { createUseStyles } from 'react-jss'
 
 interface Props {
     register? : boolean
+    errors : Array<string>
 }
 
 const UserForm : React.FC<Props> = (props) => {
 
     const styles = useStyles()
     const register = props.register
+    const errors = props.errors
 
     return (
         <div className={styles.container}>
             <h3 className={styles.header}>{register ? 'Cadastro' : 'Login'}</h3>
+            {errors.length > 0 &&
+                <ul>
+                    {errors.map(error => (
+                        <li className={styles.error} key={error}>{error}</li>
+                    ))}
+                </ul>
+            }
             <form className={styles.form} method="post" action={register ? '/user' : '/user/authenticate'}>
                 <CSRF/>
                 {register && <>
@@ -60,6 +69,9 @@ const useStyles = createUseStyles({
         border : 'none',
         color : 'white',
         fontWeight : 'bold',
+    },
+    error : {
+        color : 'white',
     }
 })
 

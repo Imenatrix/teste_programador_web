@@ -18,7 +18,7 @@
     </style>
 </head>
 <body>
-    <div id="root" authenticated="{{Auth::check()}}"></div>
+    <div id="root" errors="{{$errors->toJson()}}" authenticated="{{Auth::check()}}"></div>
     <script src="/js/user/login.js"></script>
 </body>
 </html>
